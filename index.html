@@ -1,0 +1,2284 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CloseCraft — Automation, Custom Software & Websites for Local Business | Melbourne</title>
+<meta name="description" content="I help local businesses cut the busywork — custom software, automation, and websites that take repetitive admin off your plate. Every project starts with a free 30-minute efficiency audit. Automation from $1,500, websites from $499. Melbourne-based, no agency price tag.">
+
+<!-- ── Canonical & crawling ─────────────── -->
+<link rel="canonical" href="https://closecraftwebsites.com/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="author" content="Corbyn Miller">
+<meta name="theme-color" content="#0A0A0B">
+
+<!-- ── Local / geo signals ──────────────── -->
+<meta name="geo.region" content="AU-VIC">
+<meta name="geo.placename" content="Melbourne">
+
+<!-- ── Icons & PWA ──────────────────────── -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="application-name" content="CloseCraft">
+<meta name="apple-mobile-web-app-title" content="CloseCraft">
+
+<!-- ── Open Graph ───────────────────────── -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CloseCraft">
+<meta property="og:title" content="CloseCraft — Automation, Custom Software & Websites for Local Business">
+<meta property="og:description" content="I help local businesses cut the busywork — custom software, automation and websites that take admin off your plate. Free 30-minute efficiency audit. Automation from $1,500, websites from $499. Melbourne.">
+<meta property="og:image" content="https://closecraftwebsites.com/img/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="CloseCraft — custom websites built with intent.">
+<meta property="og:url" content="https://closecraftwebsites.com/">
+<meta property="og:locale" content="en_AU">
+
+<!-- ── Twitter / X ──────────────────────── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CloseCraft — Automation, Custom Software & Websites for Local Business">
+<meta name="twitter:description" content="Cut the busywork — custom software, automation and websites that take admin off your plate. Free efficiency audit. Automation from $1,500, websites from $499. Melbourne.">
+<meta name="twitter:image" content="https://closecraftwebsites.com/img/og-image.png">
+<meta name="twitter:image:alt" content="CloseCraft — custom websites built with intent.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --bg:#0A0A0B;
+  --bg2:#0E0E10;
+  --surface:#131315;
+  --surface2:#18181B;
+  --text:#EDE9DF;
+  --text-dim:#C9C5BA;
+  --muted:#9B968A;
+  --muted2:#6C685F;
+  --line:rgba(237,233,223,.08);
+  --line2:rgba(237,233,223,.16);
+  --gold:#C9A36B;
+  --gold-bright:#E5C896;
+  --gold-dim:rgba(201,163,107,.14);
+  --green:#3DD68C;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --ease2:cubic-bezier(.7,0,.2,1);
+}
+
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--bg);color:var(--text);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.5;
+}
+
+::selection{background:var(--gold);color:#0A0A0B}
+
+/* ── Scroll progress ─────────────────────── */
+#bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-bright));z-index:300;width:100%;transform:scaleX(0);transform-origin:left;transition:transform .08s linear}
+
+/* ── Intro curtain ───────────────────────── */
+#intro{
+  position:fixed;inset:0;z-index:500;background:var(--bg);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:28px;
+  transition:transform 1s var(--ease2), visibility 0s linear 1s;
+}
+#intro .mark{
+  font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(32px,5vw,52px);font-weight:300;
+  letter-spacing:-.03em;color:var(--text);
+  opacity:0;transform:translateY(20px);
+  animation:introIn .9s var(--ease) .1s forwards
+}
+#intro .mark em{font-style:italic;color:var(--gold);font-weight:400}
+#intro .line{
+  width:0;height:1px;background:var(--gold);
+  animation:introLine 1s var(--ease) .3s forwards
+}
+@keyframes introIn{to{opacity:1;transform:none}}
+@keyframes introLine{to{width:140px}}
+body.loaded #intro{transform:translateY(-100%);visibility:hidden}
+
+/* ── Custom cursor ───────────────────────── */
+#cur,#cur2{position:fixed;top:0;left:0;pointer-events:none;z-index:400;border-radius:50%;display:none}
+#cur{width:8px;height:8px;background:var(--gold);transform:translate(-50%,-50%)}
+#cur2{
+  width:38px;height:38px;border:1px solid rgba(201,163,107,.45);
+  transform:translate(-50%,-50%);
+  transition:width .3s var(--ease),height .3s var(--ease),border-color .3s,background .3s
+}
+#cur2.hov{width:64px;height:64px;border-color:rgba(201,163,107,.9);background:rgba(201,163,107,.06)}
+@media (hover:hover) and (pointer:fine){
+  #cur,#cur2{display:block}
+}
+
+/* ── Type system ─────────────────────────── */
+.serif{font-family:'Bricolage Grotesque',sans-serif}
+.mono{font-family:'Hanken Grotesk',sans-serif}
+.eyebrow{
+  font-family:'Hanken Grotesk',sans-serif;
+  font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--muted);display:inline-flex;align-items:center;gap:12px
+}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--gold);display:inline-block}
+
+/* ── Nav ─────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:24px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:transparent;
+  border-bottom:1px solid transparent;
+  transition:padding .35s var(--ease), background .35s, border-color .35s, backdrop-filter .35s
+}
+nav.compact{
+  padding:14px 48px;
+  background:rgba(10,10,11,.72);
+  backdrop-filter:blur(18px) saturate(1.4);
+  -webkit-backdrop-filter:blur(18px) saturate(1.4);
+  border-bottom-color:var(--line)
+}
+.nav-logo{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:22px;font-weight:400;
+  color:var(--text);text-decoration:none;
+  letter-spacing:-.02em;
+  display:inline-flex;align-items:baseline
+}
+.nav-logo em{font-style:italic;color:var(--gold);font-weight:400}
+.nav-links{display:flex;gap:36px;list-style:none;align-items:center}
+.nav-links a{
+  font-family:'Hanken Grotesk',sans-serif;
+  font-size:12px;font-weight:500;color:var(--muted);
+  text-decoration:none;letter-spacing:.12em;text-transform:uppercase;
+  position:relative;padding:6px 0;
+  transition:color .25s
+}
+.nav-links a::after{
+  content:"";position:absolute;left:0;bottom:0;
+  width:100%;height:1px;background:var(--gold);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .3s var(--ease)
+}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-cta{
+  font-family:'Hanken Grotesk',sans-serif;
+  font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--bg);text-decoration:none;
+  padding:12px 22px;
+  background:var(--text);border-radius:999px;
+  display:inline-flex;align-items:center;gap:10px;
+  transition:background .25s, color .25s, transform .2s var(--ease);
+  will-change:transform
+}
+.nav-cta:hover{background:var(--gold);color:#0A0A0B}
+.nav-cta .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block;transition:background .25s}
+.nav-cta:hover .dot{background:#0A0A0B}
+
+.hamburger{display:none;flex-direction:column;gap:6px;background:none;border:none;cursor:pointer;padding:8px;z-index:202}
+.hamburger span{width:24px;height:1.5px;background:var(--text);display:block;transition:transform .3s, opacity .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+.mob-menu{
+  display:none;position:fixed;inset:0;background:var(--bg);z-index:199;
+  flex-direction:column;align-items:flex-start;justify-content:center;
+  padding:0 32px;gap:4px
+}
+.mob-menu.open{display:flex}
+.mob-menu a{
+  font-family:'Bricolage Grotesque',sans-serif;font-size:46px;font-weight:300;
+  color:var(--text);text-decoration:none;letter-spacing:-.02em;
+  border-bottom:1px solid var(--line);
+  padding:16px 0;width:100%;
+  display:flex;align-items:baseline;justify-content:space-between
+}
+.mob-menu a:hover{color:var(--gold)}
+.mob-menu a em{font-style:normal;font-size:12px;font-family:'Hanken Grotesk',sans-serif;font-weight:500;color:var(--gold);letter-spacing:.1em}
+
+/* ── Hero ────────────────────────────────── */
+#hero{
+  position:relative;
+  min-height:100vh;min-height:100svh;
+  padding:150px 48px 64px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  overflow:hidden
+}
+#hero .glow{
+  position:absolute;top:-30%;right:-15%;width:70vw;height:70vw;
+  background:radial-gradient(circle, rgba(201,163,107,.10) 0%, rgba(201,163,107,.04) 35%, transparent 65%);
+  pointer-events:none;will-change:transform
+}
+#hero .glow2{
+  position:absolute;bottom:-40%;left:-20%;width:60vw;height:60vw;
+  background:radial-gradient(circle, rgba(201,163,107,.05) 0%, transparent 60%);
+  pointer-events:none
+}
+.hero-cols{
+  position:absolute;inset:0;max-width:1440px;margin:0 auto;pointer-events:none;
+  display:grid;grid-template-columns:repeat(4,1fr)
+}
+.hero-cols span{border-left:1px solid rgba(237,233,223,.04)}
+.hero-cols span:last-child{border-right:1px solid rgba(237,233,223,.04)}
+
+.hero-grid{
+  display:grid;grid-template-columns:1fr;gap:56px;
+  max-width:1440px;width:100%;margin:0 auto;position:relative;z-index:3
+}
+.hero-top{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  padding-bottom:28px;border-bottom:1px solid var(--line)
+}
+.hero-meta{display:flex;gap:56px;align-items:flex-end;flex-wrap:wrap}
+.hero-meta-block{display:flex;flex-direction:column;gap:7px}
+.hero-meta-lbl{font-family:'Hanken Grotesk',sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted2);font-weight:500}
+.hero-meta-val{font-family:'Hanken Grotesk',sans-serif;font-size:13px;font-weight:500;color:var(--text)}
+.hero-meta-val .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:8px}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+.hero-h1{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:clamp(60px,11.5vw,188px);
+  font-weight:300;line-height:.94;letter-spacing:-.045em;
+  color:var(--text);
+  font-variation-settings:"opsz" 144;
+}
+.hero-h1 em{
+  font-style:normal;font-weight:700;color:var(--gold-bright)
+}
+.hero-h1 .small{
+  font-size:.4em;font-style:italic;font-weight:300;color:var(--muted);
+  display:block;margin-top:.55em;letter-spacing:-.02em;line-height:1.25;
+  -webkit-text-fill-color:var(--muted)
+}
+
+/* masked line reveal */
+.mask{display:block;overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em}
+.mask > span{display:block;transform:translateY(115%);transition:transform 1.1s var(--ease)}
+body.loaded .mask > span{transform:none}
+.mask.m2 > span{transition-delay:.12s}
+.mask.m3 > span{transition-delay:.24s}
+
+.hero-bottom{
+  display:grid;grid-template-columns:1.1fr 1fr;gap:80px;
+  align-items:end;padding-top:36px;border-top:1px solid var(--line)
+}
+.hero-sub{
+  font-family:'Bricolage Grotesque',sans-serif;font-style:italic;font-weight:300;
+  font-size:clamp(19px,2.1vw,27px);line-height:1.45;color:var(--text-dim);
+  max-width:560px;letter-spacing:-.01em
+}
+.hero-actions{display:flex;flex-direction:column;gap:20px;align-items:flex-start}
+.hero-pricehint{
+  font-family:'Hanken Grotesk',sans-serif;font-size:12px;letter-spacing:.04em;
+  color:var(--muted);margin-top:-4px
+}
+.hero-pricehint strong{color:var(--gold-bright);font-weight:500}
+
+.btn-p{
+  font-family:'Hanken Grotesk',sans-serif;
+  display:inline-flex;align-items:center;gap:14px;
+  padding:19px 34px;background:var(--gold);color:#0A0A0B;
+  border:none;border-radius:999px;
+  font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
+  text-decoration:none;cursor:pointer;
+  position:relative;overflow:hidden;
+  transition:color .35s, transform .2s var(--ease);
+  will-change:transform
+}
+.btn-p::before{
+  content:"";position:absolute;inset:0;
+  background:var(--text);
+  transform:translateY(101%);border-radius:999px 999px 0 0;
+  transition:transform .45s var(--ease2)
+}
+.btn-p:hover::before{transform:none;border-radius:0}
+.btn-p > *{position:relative;z-index:1}
+.btn-p .arrow{display:inline-flex;transition:transform .3s var(--ease)}
+.btn-p:hover .arrow{transform:translateX(5px)}
+
+.btn-g{
+  font-family:'Hanken Grotesk',sans-serif;
+  display:inline-flex;align-items:center;gap:10px;
+  padding:8px 0;background:transparent;color:var(--text);
+  border:none;border-bottom:1px solid var(--line2);
+  font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  text-decoration:none;cursor:pointer;
+  transition:color .25s, border-color .25s
+}
+.btn-g:hover{color:var(--gold);border-bottom-color:var(--gold)}
+
+.hero-scroll{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  font-family:'Hanken Grotesk',sans-serif;font-size:10px;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--muted2);z-index:3;
+  display:flex;flex-direction:column;align-items:center;gap:10px
+}
+.hero-scroll::after{
+  content:"";width:1px;height:40px;
+  background:linear-gradient(var(--gold),transparent);
+  animation:drip 2s var(--ease) infinite
+}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ── Section base ────────────────────────── */
+section{position:relative;padding:130px 48px;max-width:1440px;margin:0 auto}
+section.dense{padding:96px 48px}
+.sec-head{
+  display:grid;grid-template-columns:1fr 1.4fr;gap:80px;
+  align-items:end;margin-bottom:80px;
+  padding-bottom:36px;border-bottom:1px solid var(--line)
+}
+.sec-head .num{
+  font-family:'Hanken Grotesk',sans-serif;
+  font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:28px;display:block
+}
+.sec-h2{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:300;
+  font-size:clamp(40px,5.5vw,82px);line-height:1.02;letter-spacing:-.035em;
+  color:var(--text);
+  font-variation-settings:"opsz" 144
+}
+.sec-h2 em{font-style:italic;color:var(--gold);font-weight:400}
+.sec-lede{
+  font-size:16px;line-height:1.7;color:var(--muted);font-weight:400;
+  max-width:520px;padding-bottom:6px
+}
+.sec-lede strong{color:var(--text);font-weight:500}
+
+/* ── Work ────────────────────────────────── */
+.work-list{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.work-row{
+  display:grid;grid-template-columns:64px 1.3fr 1fr 1fr auto;
+  gap:48px;align-items:center;
+  padding:40px 16px;
+  border-bottom:1px solid var(--line);
+  text-decoration:none;color:var(--text);
+  position:relative;overflow:hidden;
+  transition:padding-left .4s var(--ease)
+}
+.work-row::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,var(--gold-dim),transparent 70%);
+  opacity:0;transition:opacity .4s
+}
+.work-row::after{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:var(--gold);transform:scaleY(0);
+  transition:transform .4s var(--ease)
+}
+.work-row:hover::before{opacity:1}
+.work-row:hover::after{transform:none}
+.work-row:hover{padding-left:36px}
+.work-row > *{position:relative;z-index:1}
+
+.work-num{
+  font-family:'Hanken Grotesk',sans-serif;
+  font-size:12px;font-weight:500;color:var(--muted2);letter-spacing:.1em;
+  transition:color .3s
+}
+.work-row:hover .work-num{color:var(--gold)}
+.work-name{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:clamp(28px,3.4vw,48px);font-weight:300;line-height:1.05;
+  letter-spacing:-.025em;transition:color .3s
+}
+.work-name em{font-style:italic;color:var(--gold);font-weight:400}
+.work-desc{font-size:13.5px;line-height:1.6;color:var(--muted);max-width:340px}
+.work-tags{display:flex;flex-wrap:wrap;gap:6px}
+.work-tag{
+  font-family:'Hanken Grotesk',sans-serif;
+  font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  padding:6px 12px;border:1px solid var(--line2);border-radius:999px;
+  color:var(--muted);transition:border-color .3s, color .3s
+}
+.work-row:hover .work-tag{border-color:rgba(201,163,107,.4);color:var(--gold)}
+.work-cta{
+  font-family:'Bricolage Grotesque',sans-serif;font-style:italic;
+  font-size:15px;font-weight:400;color:var(--text-dim);
+  display:inline-flex;align-items:center;gap:8px;letter-spacing:-.01em
+}
+.work-cta .arrow{display:inline-flex;transition:transform .35s var(--ease)}
+.work-row:hover .work-cta .arrow{transform:translateX(6px)}
+
+/* floating preview */
+#wprev{
+  position:fixed;top:0;left:0;z-index:90;pointer-events:none;
+  width:380px;aspect-ratio:4/3;border-radius:6px;overflow:hidden;
+  opacity:0;transform:translate(-50%,-50%) scale(.9) rotate(-2deg);
+  transition:opacity .35s var(--ease), transform .35s var(--ease);
+  box-shadow:0 30px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(201,163,107,.25);
+  display:none
+}
+#wprev.show{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0deg)}
+#wprev img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:top;
+  opacity:0;transition:opacity .3s
+}
+#wprev img.on{opacity:1}
+@media (hover:hover) and (pointer:fine) and (min-width:981px){
+  #wprev{display:block}
+}
+
+/* ── Offer ───────────────────────────────── */
+.offer-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:24px;
+  max-width:920px
+}
+.offer-badge{
+  display:inline-flex;align-items:center;gap:10px;align-self:flex-start;
+  margin-bottom:30px;
+  font-family:'Hanken Grotesk',sans-serif;font-size:11px;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--gold-bright);
+  padding:9px 16px;border:1px solid rgba(201,163,107,.45);border-radius:999px;
+  background:rgba(201,163,107,.06)
+}
+.offer-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block}
+.offer-badge s{color:var(--muted);text-decoration-thickness:1px}
+.offer-was{font-size:15px;color:var(--muted);text-decoration:line-through;margin-right:6px;font-weight:300}
+.offer-card{
+  padding:48px 40px;
+  border:1px solid var(--line);border-radius:10px;
+  display:flex;flex-direction:column;gap:20px;
+  background:linear-gradient(180deg,var(--surface) 0%,var(--bg2) 100%);
+  position:relative;overflow:hidden;
+  transition:border-color .4s, transform .4s var(--ease)
+}
+.offer-card:hover{border-color:var(--line2);transform:translateY(-6px)}
+.offer-card.feat{
+  border-color:rgba(201,163,107,.45);
+  background:linear-gradient(180deg,#17140E 0%,var(--bg2) 100%)
+}
+.offer-card.feat::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent)
+}
+.offer-card.feat:hover{border-color:rgba(201,163,107,.75)}
+
+.offer-tag{
+  font-family:'Hanken Grotesk',sans-serif;
+  font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);
+  padding:7px 13px;border:1px solid var(--line2);border-radius:999px;
+  align-self:flex-start
+}
+.offer-card.feat .offer-tag{color:var(--gold);border-color:rgba(201,163,107,.45)}
+.offer-h3{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:36px;font-weight:300;line-height:1.08;letter-spacing:-.02em;
+  color:var(--text);margin-top:4px
+}
+.offer-h3 em{font-style:italic;color:var(--gold);font-weight:400}
+.offer-desc{font-size:13.5px;line-height:1.65;color:var(--muted)}
+.offer-feats{list-style:none;display:flex;flex-direction:column;gap:11px;margin-top:6px}
+.offer-feat{
+  font-size:13px;color:var(--text-dim);line-height:1.5;
+  display:flex;align-items:flex-start;gap:11px
+}
+.offer-feat .chk{
+  color:var(--gold);flex-shrink:0;margin-top:3px;
+  font-family:'Bricolage Grotesque',sans-serif;font-style:italic;font-weight:500
+}
+.offer-price-wrap{display:flex;align-items:baseline;gap:10px;margin-top:10px;padding-top:26px;border-top:1px solid var(--line)}
+.offer-price{
+  font-family:'Bricolage Grotesque',sans-serif;font-size:56px;font-weight:300;line-height:1;
+  letter-spacing:-.04em;color:var(--text);font-variant-numeric:tabular-nums
+}
+.offer-card.feat .offer-price{color:var(--gold-bright)}
+.offer-price sup{font-size:24px;font-weight:300;top:-20px;color:var(--muted);margin-right:2px}
+.offer-pl{font-family:'Hanken Grotesk',sans-serif;font-size:11px;color:var(--muted);font-weight:500;letter-spacing:.06em;line-height:1.5}
+.offer-btn{
+  font-family:'Hanken Grotesk',sans-serif;
+  font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--text);text-decoration:none;
+  padding:16px 0 2px;margin-top:auto;
+  border:none;border-top:1px solid var(--line2);
+  display:flex;align-items:center;justify-content:space-between;
+  background:transparent;cursor:pointer;
+  transition:color .25s, border-color .25s
+}
+.offer-btn:hover{color:var(--gold);border-top-color:var(--gold)}
+.offer-btn .arrow{transition:transform .3s var(--ease)}
+.offer-btn:hover .arrow{transform:translateX(6px)}
+
+.offer-foot{
+  margin-top:56px;padding-top:40px;
+  display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start
+}
+.offer-extra{font-size:14px;line-height:1.7;color:var(--muted);max-width:480px}
+.offer-extra strong{color:var(--text);font-weight:500}
+.offer-care{
+  background:var(--surface);padding:36px;border-radius:10px;
+  border:1px solid var(--line)
+}
+.offer-care h4{
+  font-family:'Bricolage Grotesque',sans-serif;font-style:italic;font-size:24px;font-weight:400;
+  letter-spacing:-.01em;margin-bottom:10px;color:var(--text)
+}
+.offer-care h4::after{content:"";display:block;width:32px;height:1px;background:var(--gold);margin-top:12px}
+.offer-care p{font-size:13px;line-height:1.6;color:var(--muted);margin:14px 0 20px}
+.offer-care .tiers{display:flex;gap:32px;flex-wrap:wrap}
+.tier{display:flex;flex-direction:column;gap:4px}
+.tier-n{font-family:'Bricolage Grotesque',sans-serif;font-size:26px;font-weight:300;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--text)}
+.tier-n sup{font-size:13px;top:-9px;color:var(--muted)}
+.tier-n .mo{font-size:12px;color:var(--muted);font-weight:400;margin-left:4px;font-family:'Hanken Grotesk',sans-serif}
+.tier-l{font-family:'Hanken Grotesk',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+/* ── NFC review tags ─────────────────────── */
+#nfc{background:var(--bg2);max-width:none;margin:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.nfc-inner{max-width:1440px;margin:0 auto;display:grid;grid-template-columns:1.15fr 1fr;gap:80px;align-items:center}
+.nfc-text{display:flex;flex-direction:column;gap:22px}
+.nfc-h2{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:300;
+  font-size:clamp(36px,4.5vw,64px);line-height:1.04;letter-spacing:-.035em;
+  color:var(--text);margin-bottom:2px
+}
+.nfc-h2 em{font-style:italic;color:var(--gold);font-weight:400}
+.nfc-lede{font-size:15.5px;line-height:1.75;color:var(--muted);max-width:520px}
+.nfc-lede strong{color:var(--text);font-weight:500}
+.nfc-steps{display:flex;flex-direction:column;gap:2px;margin-top:6px}
+.nfc-step{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:baseline;padding:14px 0;border-bottom:1px dashed var(--line)}
+.nfc-step:last-child{border-bottom:none}
+.nfc-step-n{font-family:'Bricolage Grotesque',sans-serif;font-style:italic;font-size:15px;color:var(--gold);font-weight:500;font-variant-numeric:tabular-nums}
+.nfc-step-t{font-family:'Bricolage Grotesque',sans-serif;font-size:18px;font-weight:400;letter-spacing:-.015em;color:var(--text)}
+.nfc-step-d{font-size:13px;color:var(--muted);line-height:1.6;margin-top:3px}
+
+.nfc-card{
+  background:var(--surface);border:1px solid var(--line2);border-radius:12px;
+  padding:44px;display:flex;flex-direction:column;gap:24px;position:relative;overflow:hidden
+}
+.nfc-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,163,107,.5),transparent)}
+.nfc-tap{
+  align-self:center;width:150px;height:94px;border-radius:12px;
+  background:linear-gradient(145deg,#17140E,#0E0E10);
+  border:1px solid rgba(201,163,107,.4);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  position:relative
+}
+.nfc-tap .g{font-family:'Bricolage Grotesque',sans-serif;font-size:22px;color:var(--gold-bright);font-weight:400}
+.nfc-tap .s{font-family:'Hanken Grotesk',sans-serif;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.nfc-tap .wave{position:absolute;top:12px;right:14px;width:16px;height:16px;border:2px solid var(--gold);border-left-color:transparent;border-bottom-color:transparent;border-radius:0 12px 0 0;opacity:.7}
+.nfc-prices{display:flex;gap:16px}
+.nfc-price{flex:1;text-align:center;padding:22px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg2);transition:border-color .3s}
+.nfc-price:hover{border-color:rgba(201,163,107,.4)}
+.nfc-price .n{font-family:'Bricolage Grotesque',sans-serif;font-size:40px;font-weight:300;letter-spacing:-.03em;color:var(--text);line-height:1;font-variant-numeric:tabular-nums}
+.nfc-price .n sup{font-size:18px;top:-14px;color:var(--muted)}
+.nfc-price.best .n{color:var(--gold-bright)}
+.nfc-price .q{font-family:'Hanken Grotesk',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:10px;display:block}
+.nfc-note{font-size:12.5px;color:var(--muted);line-height:1.6;text-align:center}
+.nfc-btn{
+  font-family:'Hanken Grotesk',sans-serif;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--text);text-decoration:none;padding:16px 0 2px;
+  border:none;border-top:1px solid var(--line2);
+  display:flex;align-items:center;justify-content:space-between;background:transparent;cursor:pointer;
+  transition:color .25s,border-color .25s
+}
+.nfc-btn:hover{color:var(--gold);border-top-color:var(--gold)}
+.nfc-btn .arrow{transition:transform .3s var(--ease)}
+.nfc-btn:hover .arrow{transform:translateX(6px)}
+
+/* ── Process ─────────────────────────────── */
+.proc-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)
+}
+.proc-step{
+  padding:60px 44px;
+  border-right:1px solid var(--line);
+  display:flex;flex-direction:column;gap:20px;
+  position:relative;overflow:hidden;
+  transition:background .4s
+}
+.proc-step:last-child{border-right:none}
+.proc-step:hover{background:rgba(201,163,107,.03)}
+.proc-step .ghost{
+  position:absolute;top:18px;right:24px;
+  font-family:'Bricolage Grotesque',sans-serif;font-size:120px;font-weight:300;font-style:italic;
+  color:rgba(237,233,223,.04);line-height:1;pointer-events:none;
+  transition:color .4s
+}
+.proc-step:hover .ghost{color:rgba(201,163,107,.09)}
+.proc-num{
+  font-family:'Bricolage Grotesque',sans-serif;font-style:italic;
+  font-size:18px;font-weight:400;color:var(--gold);letter-spacing:-.01em
+}
+.proc-num::after{content:"";display:block;width:36px;height:1px;background:var(--gold);margin-top:14px}
+.proc-h3{
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:32px;font-weight:300;line-height:1.12;letter-spacing:-.025em;
+  color:var(--text)
+}
+.proc-p{font-size:14px;line-height:1.7;color:var(--muted)}
+
+/* ── Founder ─────────────────────────────── */
+#founder{background:var(--bg2);max-width:none;margin:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.founder-inner{
+  max-width:1440px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;
+  align-items:center
+}
+.founder-text{display:flex;flex-direction:column;gap:24px}
+.founder-h2{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:300;
+  font-size:clamp(36px,4.5vw,68px);line-height:1.04;letter-spacing:-.035em;
+  margin-bottom:8px;color:var(--text)
+}
+.founder-h2 em{font-style:italic;color:var(--gold);font-weight:400}
+.founder-p{font-size:15.5px;line-height:1.75;color:var(--muted);max-width:540px}
+.founder-p strong{font-weight:500;color:var(--text)}
+.founder-sig{
+  font-family:'Bricolage Grotesque',sans-serif;font-style:italic;font-size:22px;
+  color:var(--gold);margin-top:8px;letter-spacing:-.01em
+}
+.founder-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+  margin-top:24px;padding-top:36px;
+  border-top:1px solid var(--line2)
+}
+.fstat{display:flex;flex-direction:column;gap:6px}
+.fstat-n{
+  font-family:'Bricolage Grotesque',sans-serif;font-size:40px;font-weight:300;
+  letter-spacing:-.03em;line-height:1;color:var(--text);
+  font-variant-numeric:tabular-nums
+}
+.fstat-l{font-family:'Hanken Grotesk',sans-serif;font-size:10px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase}
+
+.founder-card{
+  background:var(--surface);
+  border:1px solid var(--line2);border-radius:12px;
+  padding:44px;
+  display:flex;flex-direction:column;gap:26px;
+  position:relative;overflow:hidden
+}
+.founder-card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(201,163,107,.5),transparent)
+}
+.founder-port{
+  display:flex;align-items:center;gap:18px;
+  padding-bottom:26px;border-bottom:1px solid var(--line)
+}
+.founder-mono{
+  width:64px;height:64px;border-radius:50%;
+  background:var(--gold);color:#0A0A0B;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bricolage Grotesque',sans-serif;font-size:24px;font-weight:400;letter-spacing:-.02em;flex-shrink:0
+}
+.founder-port-meta{display:flex;flex-direction:column;gap:4px}
+.founder-name{font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:400;letter-spacing:-.02em;color:var(--text)}
+.founder-role{font-family:'Hanken Grotesk',sans-serif;font-size:11px;color:var(--muted);font-weight:500;letter-spacing:.08em;text-transform:uppercase}
+.founder-role .dot{display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--gold);margin:0 8px;transform:translateY(-2px)}
+
+.principles{display:flex;flex-direction:column}
+.principle{
+  display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;
+  padding:16px 0;border-bottom:1px dashed var(--line)
+}
+.principle:last-child{border-bottom:none}
+.principle-n{
+  font-family:'Bricolage Grotesque',sans-serif;font-style:italic;font-size:14px;
+  color:var(--gold);font-variant-numeric:tabular-nums;font-weight:500
+}
+.principle-t{font-family:'Bricolage Grotesque',sans-serif;font-size:18px;font-weight:400;letter-spacing:-.015em;color:var(--text)}
+.principle-d{font-size:13px;color:var(--muted);line-height:1.6;margin-top:3px}
+
+/* ── CTA ─────────────────────────────────── */
+#contact{
+  background:var(--bg);color:var(--text);
+  max-width:none;margin:0;padding:150px 48px;
+  position:relative;overflow:hidden
+}
+#contact .cta-glow{
+  position:absolute;top:-40%;left:50%;transform:translateX(-50%);
+  width:90vw;height:80vw;max-width:1200px;max-height:900px;
+  background:radial-gradient(ellipse at center, rgba(201,163,107,.09) 0%, transparent 60%);
+  pointer-events:none
+}
+#contact .inner{max-width:1440px;margin:0 auto;position:relative;z-index:1}
+.cta-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:80px;align-items:end}
+.cta-h2{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:300;
+  font-size:clamp(56px,8.5vw,136px);line-height:.94;letter-spacing:-.045em;
+  font-variation-settings:"opsz" 144
+}
+.cta-h2 em{
+  font-style:normal;font-weight:600;color:var(--gold-bright)
+}
+.cta-side{display:flex;flex-direction:column;gap:24px;padding-bottom:12px}
+.cta-sub{font-size:15.5px;line-height:1.75;color:var(--muted);max-width:420px}
+.cta-actions{display:flex;flex-direction:column;margin-top:8px}
+.cta-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 0;border-bottom:1px solid var(--line2);
+  text-decoration:none;color:var(--text);
+  transition:padding-left .35s var(--ease)
+}
+.cta-row:first-child{border-top:1px solid var(--line2)}
+.cta-row:hover{padding-left:16px}
+.cta-row:hover .cta-row-label{color:var(--gold)}
+.cta-row-label{
+  font-family:'Bricolage Grotesque',sans-serif;font-style:italic;font-size:24px;font-weight:400;
+  letter-spacing:-.01em;transition:color .25s
+}
+.cta-row-meta{
+  display:flex;align-items:center;gap:14px;
+  font-family:'Hanken Grotesk',sans-serif;font-size:12px;color:var(--muted)
+}
+.cta-row-arrow{display:inline-flex;transition:transform .3s var(--ease);color:var(--gold)}
+.cta-row:hover .cta-row-arrow{transform:translateX(6px)}
+
+.cta-bottom{
+  margin-top:90px;padding-top:40px;
+  border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px
+}
+.cta-note{font-family:'Hanken Grotesk',sans-serif;font-size:11px;color:var(--muted2);letter-spacing:.1em;text-transform:uppercase}
+.cta-loc{font-family:'Hanken Grotesk',sans-serif;font-size:11px;color:var(--muted2);display:inline-flex;align-items:center;gap:10px;letter-spacing:.06em;text-transform:uppercase}
+.cta-loc .dot{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block}
+
+/* ── Footer ──────────────────────────────── */
+footer{
+  background:var(--bg);color:var(--text);
+  padding:48px;
+  border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:24px
+}
+.foot-logo{
+  font-family:'Bricolage Grotesque',sans-serif;font-size:18px;font-weight:400;
+  color:var(--text);text-decoration:none;letter-spacing:-.01em
+}
+.foot-logo em{font-style:italic;color:var(--gold)}
+.foot-links{display:flex;gap:28px;list-style:none}
+.foot-links a{
+  font-family:'Hanken Grotesk',sans-serif;
+  font-size:11px;color:var(--muted);text-decoration:none;
+  letter-spacing:.1em;text-transform:uppercase;
+  transition:color .2s
+}
+.foot-links a:hover{color:var(--gold)}
+.foot-copy{font-family:'Hanken Grotesk',sans-serif;font-size:11px;color:var(--muted2);letter-spacing:.06em}
+
+/* ── FAQ ─────────────────────────────────── */
+.faq-list{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{
+  list-style:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;gap:32px;
+  padding:32px 8px;
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:300;
+  font-size:clamp(20px,2.4vw,30px);line-height:1.2;letter-spacing:-.02em;color:var(--text);
+  transition:color .25s
+}
+.faq-q::-webkit-details-marker{display:none}
+.faq-item[open] .faq-q,.faq-q:hover{color:var(--gold)}
+.faq-ico{position:relative;width:18px;height:18px;flex-shrink:0}
+.faq-ico::before,.faq-ico::after{content:"";position:absolute;background:var(--gold);transition:transform .3s var(--ease)}
+.faq-ico::before{top:50%;left:0;width:100%;height:1.5px;transform:translateY(-50%)}
+.faq-ico::after{left:50%;top:0;height:100%;width:1.5px;transform:translateX(-50%)}
+.faq-item[open] .faq-ico::after{transform:translateX(-50%) scaleY(0)}
+.faq-a{padding:0 8px 34px;max-width:760px}
+.faq-a p{font-size:15px;line-height:1.75;color:var(--muted)}
+.faq-a strong{color:var(--text);font-weight:500}
+
+/* ── Reveal ──────────────────────────────── */
+.fu{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease), transform 1s var(--ease)}
+.fu.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.4s}
+
+/* ── Focus states ────────────────────────── */
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+
+/* ── Responsive ──────────────────────────── */
+@media (max-width: 980px){
+  nav{padding:18px 24px}
+  nav.compact{padding:12px 24px}
+  .nav-links{display:none}
+  .nav-cta{display:none}
+  .hamburger{display:flex}
+
+  section{padding:88px 24px}
+  section.dense{padding:64px 24px}
+  #hero{padding:130px 24px 80px}
+  .hero-cols{display:none}
+  .hero-scroll{display:none}
+
+  .hero-top{flex-direction:column;align-items:flex-start;gap:22px}
+  .hero-meta{gap:28px}
+  .hero-bottom{grid-template-columns:1fr;gap:36px}
+
+  .sec-head{grid-template-columns:1fr;gap:24px;margin-bottom:48px}
+
+  .work-row{grid-template-columns:36px 1fr auto;gap:20px;padding:30px 8px}
+  .work-row:hover{padding-left:18px}
+  .work-desc,.work-tags{display:none}
+  .work-name{font-size:26px}
+  .work-cta{font-size:13px}
+
+  .offer-grid{grid-template-columns:1fr}
+  .offer-card{padding:36px 28px}
+  .offer-foot{grid-template-columns:1fr;gap:32px}
+
+  .proc-grid{grid-template-columns:1fr}
+  .proc-step{border-right:none;border-bottom:1px solid var(--line);padding:44px 28px}
+  .proc-step:last-child{border-bottom:none}
+
+  #founder{padding:88px 24px}
+  .founder-inner{grid-template-columns:1fr;gap:48px}
+  .founder-card{padding:30px}
+
+  #nfc{padding:88px 24px}
+  .nfc-inner{grid-template-columns:1fr;gap:44px}
+  .nfc-card{padding:30px}
+  .offer-grid{max-width:none}
+
+  #contact{padding:88px 24px}
+  .cta-grid{grid-template-columns:1fr;gap:48px}
+  .cta-row-meta{font-size:11px}
+  .cta-bottom{flex-direction:column;align-items:flex-start;margin-top:56px}
+
+  footer{padding:32px 24px;flex-direction:column;align-items:flex-start}
+
+  .mob-menu a{font-size:36px;padding:14px 0}
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
+  .mq-track{animation:none}
+  #grain{animation:none}
+  #cur,#cur2,#intro{display:none !important}
+  body:not(.loaded) .mask > span{transform:none}
+  .fu{opacity:1;transform:none}
+}
+
+/* ══════════════════════════════════════════════════════
+   DESIGN REFRESH — Revolut-direction, Impeccable-clean
+   ══════════════════════════════════════════════════════ */
+:root{
+  --bg:#08080A;--bg2:#0D0D10;--surface:#141417;--surface2:#1B1B1F;
+  --text:#F5F2EC;--text-dim:#DAD6CB;--muted:#AEA99D;--muted2:#8F8B7F;
+  --line:rgba(245,242,236,.09);--line2:rgba(245,242,236,.17);
+  --gold:#D2AB70;--gold-bright:#EEC98E;--gold-dim:rgba(210,171,112,.14);
+}
+/* De-slop: remove the AI tells the linter flagged */
+#grain,#cur,#cur2{display:none!important}
+.hero-meta-val .dot,.cta-loc .dot,.offer-badge .dot{animation:none!important;box-shadow:none!important}
+/* no gradient text — solid gold emphasis */
+.hero-h1 em,.cta-h2 em{-webkit-text-fill-color:var(--gold-bright)!important;background:none!important;color:var(--gold-bright)!important;animation:none!important;font-style:normal}
+/* Grotesk headlines: tight, medium-heavy, no italic display */
+.hero-h1,.sec-h2,.cta-h2,.founder-h2,.offer-h3,.nfc-h2,.proc-h3,.work-name,.faq-q{letter-spacing:-.03em}
+.hero-h1{font-weight:700}
+.sec-h2,.cta-h2,.founder-h2,.nfc-h2{font-weight:600}
+.offer-h3,.proc-h3,.work-name{font-weight:600;font-style:normal}
+.offer-h3 em,.work-name em,.nfc-h2 em,.sec-h2 em,.founder-h2 em,.proc-h3 em{font-style:normal;color:var(--gold-bright)}
+.hero-h1 .small{font-style:normal}
+/* Sentence-case the shouty micro-labels; keep only a hair of tracking */
+.eyebrow,.sec-head .num{text-transform:none;letter-spacing:.01em;font-weight:600}
+.hero-meta-lbl,.hero-meta-val,.offer-tag,.work-tag,.tier-l,.fstat-l,.cta-note,.cta-loc,.foot-copy{letter-spacing:.02em}
+.nav-links a,.foot-links a{text-transform:none;letter-spacing:.01em;font-weight:500}
+.nav-cta,.btn-p,.btn-g,.offer-btn,.nfc-btn{text-transform:none;letter-spacing:0}
+/* Legibility floor: no sub-11px functional text */
+.hero-meta-lbl,.work-tag,.offer-tag,.fstat-l,.tier-l,.nfc-price .q,.foot-copy{font-size:11.5px}
+/* Pills everywhere (Revolut) */
+.btn-g{border-bottom:none;background:var(--surface2);border:1px solid var(--line2);border-radius:999px;padding:14px 24px}
+.btn-g:hover{background:var(--surface);border-color:var(--gold);color:var(--gold-bright)}
+/* Flat cards — soften the borders, keep it clean */
+.offer-card,.nfc-card,.founder-card{border-radius:20px}
+.hero-sub{font-style:normal;color:var(--text-dim)}
+/* Hero rhythm: headline leads, no dead zone */
+#hero{min-height:auto;padding:128px 48px 72px;justify-content:flex-start}
+.hero-grid{gap:34px}
+.hero-top{padding-bottom:22px;order:0}
+.hero-h1{font-size:clamp(52px,9vw,132px);line-height:.96}
+.hero-h1 .small{font-size:.32em;margin-top:.7em;color:var(--muted);max-width:24ch}
+.hero-bottom{padding-top:30px;gap:56px}
+.hero-scroll{display:none}
+@media (max-width:980px){#hero{padding:112px 24px 64px}}
+/* Static trust strip (replaces the marquee) */
+.strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2);padding:26px 48px;display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap}
+.strip-lead{font-family:'Hanken Grotesk',sans-serif;font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--muted2);text-transform:uppercase}
+.strip-list{display:flex;gap:14px 26px;list-style:none;flex-wrap:wrap;justify-content:center}
+.strip-list li{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(16px,2vw,22px);font-weight:500;color:var(--text-dim);letter-spacing:-.01em;position:relative}
+.strip-list li:not(:last-child)::after{content:"·";position:absolute;right:-16px;color:var(--gold);opacity:.5}
+@media (max-width:600px){.strip{padding:22px 20px;gap:14px}.strip-list li:not(:last-child)::after{display:none}}
+
+/* Motion tokens */
+:root{--ease-out:cubic-bezier(0.23,1,0.32,1);--ease-in-out:cubic-bezier(0.77,0,0.175,1)}
+
+/* ── Hero product card ─────────────────── */
+.hero-bottom{grid-template-columns:1.1fr 1fr;align-items:end;gap:64px}
+.hero-card{
+  justify-self:end;width:100%;max-width:350px;
+  background:linear-gradient(180deg,var(--surface),var(--bg2));
+  border:1px solid var(--line2);border-radius:22px;padding:16px;position:relative;
+  opacity:0;transform:translateY(18px) scale(.96);
+  transition:opacity .6s var(--ease-out) .4s, transform .6s var(--ease-out) .4s
+}
+body.loaded .hero-card{opacity:1;transform:none}
+.hc-bar{display:flex;gap:6px;padding:4px 6px 14px}
+.hc-bar i{width:9px;height:9px;border-radius:50%;background:var(--line2)}
+.hc-screen{border-radius:14px;overflow:hidden;background:var(--bg);border:1px solid var(--line)}
+.hc-top{background:linear-gradient(135deg,var(--gold),var(--gold-bright));padding:20px 18px;color:#0A0A0B}
+.hc-top b{font-family:'Bricolage Grotesque',sans-serif;font-size:19px;font-weight:700;letter-spacing:-.02em;display:block}
+.hc-top span{font-size:11px;font-weight:600;opacity:.72}
+.hc-body{padding:16px 18px 20px;display:flex;flex-direction:column;gap:9px}
+.hc-line{height:8px;border-radius:4px;background:var(--surface2)}
+.hc-line.s{width:55%}.hc-line.m{width:78%}
+.hc-cta{margin-top:8px;height:28px;width:118px;border-radius:999px;background:var(--text)}
+.hc-pill{
+  position:absolute;top:-15px;right:-8px;background:var(--bg2);
+  border:1px solid rgba(210,171,112,.5);border-radius:999px;padding:9px 14px;
+  display:flex;align-items:center;gap:8px;
+  font-family:'Hanken Grotesk',sans-serif;font-size:12px;font-weight:600;color:var(--text);
+  animation:hc-float 4.5s ease-in-out infinite
+}
+.hc-pill .stars{color:var(--gold-bright);letter-spacing:1px;font-size:11px}
+@keyframes hc-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+/* ── Process flow (scroll-driven) ──────── */
+.flow{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:8px}
+.flow-rail{position:absolute;top:31px;left:16.6%;right:16.6%;height:2px;background:var(--line2);border-radius:2px;overflow:hidden}
+.flow-rail-fill{position:absolute;inset:0;background:linear-gradient(90deg,var(--gold),var(--gold-bright));transform:scaleX(0);transform-origin:left;will-change:transform}
+.flow-step{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;opacity:.4;transform:translateY(12px);transition:opacity .55s var(--ease-out),transform .55s var(--ease-out)}
+.flow-step.on{opacity:1;transform:none}
+.flow-node{width:64px;height:64px;border-radius:50%;background:var(--surface);border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-size:24px;font-weight:700;color:var(--muted);transition:border-color .45s var(--ease-out),background .45s var(--ease-out),color .45s var(--ease-out),transform .45s var(--ease-out);position:relative;z-index:1}
+.flow-step.on .flow-node{border-color:var(--gold);background:#17140E;color:var(--gold-bright);transform:scale(1.06)}
+.flow-txt{display:flex;flex-direction:column;gap:8px}
+.flow-h3{font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:600;letter-spacing:-.02em;color:var(--text)}
+.flow-p{font-size:14px;line-height:1.65;color:var(--muted);max-width:30ch}
+@media (max-width:760px){
+  .flow{grid-template-columns:1fr;gap:22px;max-width:440px;margin:0 auto}
+  .flow-rail{display:none}
+  .flow-step{flex-direction:row;text-align:left;align-items:flex-start;gap:18px}
+  .flow-node{flex-shrink:0;width:52px;height:52px;font-size:20px}
+  .flow-p{max-width:none}
+}
+@media (max-width:980px){.hero-bottom{grid-template-columns:1fr;gap:40px}.hero-card{justify-self:start;max-width:330px}}
+@media (prefers-reduced-motion:reduce){
+  .hero-card{opacity:1;transform:none;transition:none}
+  .hc-pill{animation:none}
+  .flow-step{opacity:1;transform:none}
+  .flow-rail-fill{transform:scaleX(1)}
+}
+
+/* Real NFC tag product photo */
+.nfc-photo-wrap{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line2);box-shadow:0 24px 60px rgba(0,0,0,.5);transition:transform .5s var(--ease-out);max-width:380px;margin:0 auto}
+.nfc-card:hover .nfc-photo-wrap{transform:translateY(-4px)}
+.nfc-photo{display:block;width:100%;height:auto}
+.nfc-photo-wrap::after{content:"";position:absolute;inset:0;border-radius:18px;box-shadow:inset 0 0 0 1px rgba(245,242,236,.06);pointer-events:none}
+.nfc-photo-tag{position:absolute;left:14px;bottom:14px;background:rgba(8,8,10,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--line2);border-radius:999px;padding:8px 14px;font-family:'Hanken Grotesk',sans-serif;font-size:12px;font-weight:600;color:var(--text)}
+
+/* ── Work grid — real screenshots ──────── */
+.work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:8px}
+.work-card{text-decoration:none;color:var(--text);border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--surface);transition:transform .5s var(--ease-out),border-color .5s var(--ease-out)}
+.work-card:hover{transform:translateY(-6px);border-color:var(--line2)}
+.work-card.work-wide{grid-column:1 / -1}
+.work-shot{aspect-ratio:16/10;overflow:hidden;background:var(--bg2);border-bottom:1px solid var(--line)}
+.work-card.work-wide .work-shot{aspect-ratio:23/9}
+.work-shot img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .8s var(--ease-out)}
+.work-card:hover .work-shot img{transform:scale(1.04)}
+.work-meta{padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.work-info{display:flex;flex-direction:column;gap:9px}
+.work-title{font-family:'Bricolage Grotesque',sans-serif;font-size:21px;font-weight:600;letter-spacing:-.02em;line-height:1.1}
+.work-title em{font-style:normal;color:var(--gold-bright)}
+.work-tags2{display:flex;gap:8px;flex-wrap:wrap}
+.work-tag2{font-family:'Hanken Grotesk',sans-serif;font-size:11.5px;color:var(--muted);border:1px solid var(--line2);border-radius:999px;padding:5px 11px}
+.work-go{color:var(--gold);flex-shrink:0;display:inline-flex;transition:transform .35s var(--ease-out)}
+.work-card:hover .work-go{transform:translate(3px,-3px)}
+@media (max-width:760px){.work-grid{grid-template-columns:1fr}.work-card.work-wide .work-shot{aspect-ratio:16/10}}
+
+/* Final polish: sentence-case wordy labels, lift below-12px labels to floor */
+.strip-lead,.offer-tag,.hero-meta-lbl,.cta-note,.cta-loc,.tier-l{text-transform:none;letter-spacing:.01em}
+.hero-meta-lbl,.work-tag,.offer-tag,.fstat-l,.tier-l,.nfc-price .q,.foot-copy,.work-tag2{font-size:12px}
+.offer-from{font-size:.42em;color:var(--muted);font-weight:300;letter-spacing:0}
+
+/* ── Self-audit ─────────────────────────── */
+#audit{background:var(--bg2);max-width:none;margin:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.audit-inner{max-width:980px;margin:0 auto}
+.audit-head{text-align:center;max-width:640px;margin:0 auto 38px}
+.audit-head .eyebrow{justify-content:center}
+.audit-h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(32px,4.5vw,58px);line-height:1.04;letter-spacing:-.035em;color:var(--text);margin:16px 0 16px}
+.audit-h2 em{font-style:normal;color:var(--gold-bright)}
+.audit-lede{font-size:15.5px;line-height:1.7;color:var(--muted)}
+.audit-card{background:var(--surface);border:1px solid var(--line2);border-radius:22px;padding:clamp(24px,4vw,44px)}
+.audit-q{font-family:'Hanken Grotesk',sans-serif;font-size:12px;font-weight:600;letter-spacing:.02em;color:var(--muted);margin-bottom:14px;display:block}
+.audit-chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.chip{font-family:'Hanken Grotesk',sans-serif;font-size:14px;color:var(--text-dim);background:var(--bg2);border:1px solid var(--line2);border-radius:999px;padding:11px 18px;cursor:pointer;transition:border-color .2s,background .2s,color .2s;user-select:none;-webkit-tap-highlight-color:transparent}
+.chip:hover{border-color:var(--muted)}
+.chip.on{background:var(--gold);border-color:var(--gold);color:#0A0A0B;font-weight:600}
+.audit-foot{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end;justify-content:space-between}
+.audit-go{font-family:'Hanken Grotesk',sans-serif;font-size:14px;font-weight:600;letter-spacing:.02em;color:#0A0A0B;background:var(--gold);border:none;border-radius:999px;padding:15px 28px;cursor:pointer;transition:background .2s,transform .2s var(--ease-out);display:inline-flex;align-items:center;gap:10px}
+.audit-go:hover{background:var(--gold-bright);transform:translateY(-2px)}
+.audit-result{margin-top:30px;padding-top:30px;border-top:1px solid var(--line);display:none}
+.audit-result.show{display:block}
+.audit-result-big{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(21px,2.6vw,28px);font-weight:600;letter-spacing:-.02em;color:var(--text);line-height:1.25}
+.audit-result-big b{color:var(--gold-bright)}
+.audit-result-sub{font-size:14px;color:var(--muted);margin-top:14px;line-height:1.65}
+.audit-result-sub b{color:var(--text);font-weight:600}
+.audit-cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px}
+.audit-book{font-family:'Hanken Grotesk',sans-serif;font-size:14px;font-weight:600;color:#0A0A0B;background:var(--gold);border-radius:999px;padding:15px 28px;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:background .2s}
+.audit-book:hover{background:var(--gold-bright)}
+.audit-call{font-family:'Hanken Grotesk',sans-serif;font-size:14px;font-weight:600;color:var(--text);background:var(--surface2);border:1px solid var(--line2);border-radius:999px;padding:15px 24px;text-decoration:none;transition:border-color .2s;display:inline-flex;align-items:center}
+.audit-call:hover{border-color:var(--gold)}
+@media (max-width:980px){#audit{padding:88px 24px}}
+
+/* ══ HERO REDESIGN ══ */
+#hero{min-height:auto;display:block;padding:clamp(128px,15vh,172px) 48px clamp(80px,10vh,112px)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:72px;align-items:center;max-width:1320px;width:100%;margin:0 auto}
+.hero-copy{display:flex;flex-direction:column;align-items:flex-start;gap:34px}
+.hero-h1{font-size:clamp(68px,12vw,164px);line-height:.9;letter-spacing:-.045em;font-weight:700;margin:0}
+.hero-h1 .mask > span{transition-duration:1s}
+.hero-copy .hero-sub{font-style:normal;color:var(--text-dim);font-size:clamp(17px,1.5vw,21px);line-height:1.5;max-width:30ch;margin:0}
+.hero-copy .hero-actions{flex-direction:row;align-items:center;gap:22px;flex-wrap:wrap}
+/* self-clearing busywork demo */
+.hero-demo{justify-self:end;width:100%;max-width:400px;background:linear-gradient(180deg,var(--surface),var(--bg2));border:1px solid var(--line);border-radius:20px;padding:28px 30px}
+.demo-head{display:flex;align-items:center;justify-content:space-between;font-family:'Hanken Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--text-dim);padding-bottom:18px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+.demo-week{font-size:11px;color:var(--muted2);font-weight:500}
+.demo-list{list-style:none;display:flex;flex-direction:column}
+.demo-list li{display:flex;align-items:center;gap:14px;padding:14px 0;font-family:'Hanken Grotesk',sans-serif;font-size:15.5px;color:var(--text-dim);border-bottom:1px solid var(--line)}
+.demo-check{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--line2);flex-shrink:0;position:relative;transition:background .35s var(--ease-out),border-color .35s var(--ease-out)}
+.demo-check::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #0A0A0B;border-width:0 2px 2px 0;transform:rotate(45deg) scale(0);transform-origin:center;transition:transform .3s var(--ease-out)}
+.demo-task{transition:color .35s var(--ease-out),opacity .35s}
+.demo-list li.done .demo-check{background:var(--gold);border-color:var(--gold)}
+.demo-list li.done .demo-check::after{transform:rotate(45deg) scale(1)}
+.demo-list li.done .demo-task{color:var(--muted2);text-decoration:line-through;text-decoration-color:var(--muted2)}
+.demo-foot{display:flex;align-items:center;gap:10px;margin-top:18px;font-family:'Hanken Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--muted);opacity:0;transition:opacity .5s var(--ease-out)}
+.demo-foot.on{opacity:1;color:var(--gold-bright)}
+.demo-dot{width:7px;height:7px;border-radius:50%;background:var(--gold)}
+@media (max-width:980px){
+  #hero{min-height:auto;padding:120px 24px 72px}
+  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .hero-demo{justify-self:stretch;max-width:420px}
+}
+@media (prefers-reduced-motion:reduce){
+  .demo-list li .demo-check{background:var(--gold);border-color:var(--gold)}
+  .demo-list li .demo-check::after{transform:rotate(45deg) scale(1)}
+  .demo-list li .demo-task{color:var(--muted2);text-decoration:line-through}
+  .demo-foot{opacity:1;color:var(--gold-bright)}
+}
+/* De-badge: the audit entry is a quiet line, not a pill */
+.offer-badge{border:none!important;background:none!important;padding:0!important;margin-bottom:34px;color:var(--muted);text-transform:none;letter-spacing:.01em;font-size:13.5px;font-weight:500}
+.offer-badge a{color:var(--text)!important;text-decoration:underline;text-decoration-color:var(--line2);text-underline-offset:3px;transition:text-decoration-color .2s}
+.offer-badge a:hover{text-decoration-color:var(--gold)}
+.offer-badge .dot{box-shadow:none!important}
+
+/* ══ OFFER as editorial services index (no boxes) ══ */
+.services{margin-top:8px;border-top:1px solid var(--line2)}
+.service{display:grid;grid-template-columns:.8fr 1.5fr;gap:52px;padding:46px 10px;border-bottom:1px solid var(--line);transition:padding-left .45s var(--ease-out)}
+.service:hover{padding-left:24px}
+.service-head{display:flex;flex-direction:column;gap:16px}
+.service-title{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(28px,3.3vw,44px);font-weight:600;letter-spacing:-.03em;line-height:1.0;color:var(--text)}
+.service-title em{font-style:normal;color:var(--gold-bright)}
+.service-price{font-family:'Bricolage Grotesque',sans-serif;font-size:30px;font-weight:300;color:var(--text);font-variant-numeric:tabular-nums;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.service-unit{font-family:'Hanken Grotesk',sans-serif;font-size:12px;font-weight:500;color:var(--muted);letter-spacing:.02em}
+.service-price-sm{font-size:15px;color:var(--muted);font-family:'Hanken Grotesk',sans-serif;font-weight:600}
+.service-body{display:flex;flex-direction:column;gap:22px;max-width:640px}
+.service-desc{font-size:15px;line-height:1.7;color:var(--muted)}
+.service-feats{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:11px 28px}
+.service-care .service-feats{grid-template-columns:1fr}
+.service-feats li{font-size:13.5px;color:var(--text-dim);padding-left:18px;position:relative;line-height:1.5}
+.service-feats li::before{content:"";position:absolute;left:0;top:10px;width:7px;height:1px;background:var(--gold)}
+.service-feats li strong{color:var(--text);font-weight:600}
+.service-link{font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;font-weight:600;color:var(--gold);text-decoration:none;display:inline-flex;gap:8px;align-items:center;transition:gap .3s var(--ease-out),color .2s}
+.service-link:hover{color:var(--gold-bright);gap:14px}
+.offer-note{max-width:660px;margin:46px auto 0;text-align:center;font-size:14px;line-height:1.7;color:var(--muted2)}
+.work-meta{align-items:flex-start}
+.work-go{margin-top:4px}
+.work-desc2{font-size:13.5px;color:var(--muted);line-height:1.55;margin:2px 0;max-width:54ch}
+
+/* ══ OFFER as a concise menu ══ */
+.svc-list{margin-top:10px;border-top:1px solid var(--line2)}
+.svc{display:flex;align-items:center;gap:32px;padding:30px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--text);transition:padding-left .45s var(--ease-out)}
+.svc:hover{padding-left:22px}
+.svc-main{flex:1;display:flex;flex-direction:column;gap:7px;min-width:0}
+.svc-name{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(23px,2.7vw,34px);font-weight:600;letter-spacing:-.025em;line-height:1.02;transition:color .25s}
+.svc-name em{font-style:normal;color:var(--gold-bright)}
+.svc:hover .svc-name{color:var(--gold-bright)}
+.svc-tag{font-size:14px;color:var(--muted);line-height:1.45;max-width:54ch}
+.svc-end{display:flex;align-items:center;gap:20px;flex-shrink:0}
+.svc-price{font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:300;color:var(--text-dim);font-variant-numeric:tabular-nums;white-space:nowrap}
+.svc-price .offer-from{font-size:13px}
+.svc-mo{font-size:13px;color:var(--muted)}
+.svc-arrow{color:var(--gold);display:inline-flex;transition:transform .3s var(--ease-out)}
+.svc:hover .svc-arrow{transform:translate(4px,-4px)}
+.offer-mini{max-width:620px;margin:42px auto 0;text-align:center;font-size:14px;line-height:1.7;color:var(--muted)}
+.offer-mini a{color:var(--text);text-decoration:underline;text-decoration-color:var(--line2);text-underline-offset:3px}
+.offer-mini a:hover{text-decoration-color:var(--gold)}
+@media (max-width:640px){
+  .svc{flex-wrap:wrap;gap:10px 16px;padding:24px 0}
+  .svc:hover{padding-left:0}
+  .svc-end{width:100%;justify-content:space-between}
+  .svc-tag{max-width:none}
+}
+@media (max-width:860px){
+  .service{grid-template-columns:1fr;gap:22px;padding:38px 0}
+  .service:hover{padding-left:0}
+  .service-head{flex-direction:row;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  .service-feats{grid-template-columns:1fr}
+}
+
+/* ══ OFFER — premium pricing cards ══ */
+.price-grid{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:16px;margin-top:14px}
+.price-card{display:flex;flex-direction:column;gap:16px;background:linear-gradient(180deg,var(--surface),var(--bg2));border:1px solid var(--line);border-radius:20px;padding:34px 30px;position:relative;transition:transform .5s var(--ease-out),border-color .4s}
+.price-card:hover{transform:translateY(-6px);border-color:var(--line2)}
+.price-card.feat{border-color:rgba(210,171,112,.45);background:linear-gradient(180deg,#17140E,var(--bg2))}
+.price-card.feat::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.price-title{font-family:'Bricolage Grotesque',sans-serif;font-size:23px;font-weight:600;letter-spacing:-.02em;line-height:1.1;color:var(--text)}
+.price-title em{font-style:normal;color:var(--gold-bright)}
+.price-amount{display:flex;align-items:baseline;gap:9px;margin-top:2px}
+.price-from{font-size:14px;color:var(--muted)}
+.price-num{font-family:'Bricolage Grotesque',sans-serif;font-size:48px;font-weight:300;letter-spacing:-.03em;color:var(--text);line-height:1;font-variant-numeric:tabular-nums}
+.price-card.feat .price-num{color:var(--gold-bright)}
+.price-unit{font-size:12.5px;color:var(--muted);margin-top:-6px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.price-desc{font-size:14px;line-height:1.55;color:var(--muted)}
+.price-feats{list-style:none;display:flex;flex-direction:column;gap:11px}
+.price-feat{font-size:13.5px;color:var(--text-dim);display:flex;gap:11px;align-items:flex-start;line-height:1.45}
+.price-feat::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0}
+.price-cta{margin-top:auto;font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;font-weight:600;text-decoration:none;border-radius:999px;padding:14px 22px;transition:background .2s,border-color .2s,color .2s;border:1px solid var(--line2);color:var(--text);background:transparent;display:flex;align-items:center;justify-content:center;gap:8px}
+.price-cta:hover{border-color:var(--gold);color:var(--gold-bright)}
+.price-cta .arrow{transition:transform .3s var(--ease-out)}
+.price-cta:hover .arrow{transform:translateX(4px)}
+.price-card.feat .price-cta{background:var(--gold);color:#0A0A0B;border-color:var(--gold)}
+.price-card.feat .price-cta:hover{background:var(--gold-bright);color:#0A0A0B}
+.offer-mini{max-width:620px;margin:40px auto 0;text-align:center;font-size:14px;line-height:1.7;color:var(--muted)}
+.offer-mini a{color:var(--text);text-decoration:underline;text-decoration-color:var(--line2);text-underline-offset:3px}
+.offer-mini a:hover{text-decoration-color:var(--gold)}
+@media (max-width:860px){.price-grid{grid-template-columns:1fr;gap:14px}}
+
+/* ══ AUDIT — one-question quiz ══ */
+.quiz{max-width:720px;margin:0 auto}
+.quiz-top{display:flex;align-items:center;gap:18px;margin-bottom:30px}
+.quiz-step-label{font-family:'Hanken Grotesk',sans-serif;font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--muted);white-space:nowrap}
+.quiz-bar{flex:1;height:4px;background:var(--surface2);border-radius:999px;overflow:hidden}
+.quiz-bar-fill{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,var(--gold),var(--gold-bright));border-radius:999px;transition:transform .5s var(--ease-out)}
+/* cleanup: lift content text to the 12px floor */
+.hc-top span,.demo-week,.hc-pill .stars,.cta-row-meta,.foot-links a,.foot-copy,.cta-note,.cta-loc,.founder-role{font-size:12px}
+/* multi-select quiz option + Next */
+.quiz-opt.sel{border-color:var(--gold);background:rgba(210,171,112,.1)}
+.quiz-opt.sel::after{content:"✓";opacity:1;transform:none;color:var(--gold-bright)}
+.quiz-next{margin-top:22px;font-family:'Hanken Grotesk',sans-serif;font-size:14px;font-weight:600;color:#0A0A0B;background:var(--gold);border:none;border-radius:999px;padding:15px 30px;cursor:pointer;transition:background .2s,opacity .2s;display:inline-flex;align-items:center;gap:9px}
+.quiz-next:disabled{opacity:.4;cursor:not-allowed}
+.quiz-next:not(:disabled):hover{background:var(--gold-bright)}
+.quiz-step{display:none}
+.quiz-step.active{display:block;animation:quizIn .45s var(--ease-out)}
+@keyframes quizIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.quiz-q{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(24px,3vw,36px);font-weight:600;letter-spacing:-.03em;line-height:1.1;color:var(--text);margin-bottom:26px;max-width:16ch}
+.quiz-opts{display:flex;flex-direction:column;gap:12px}
+.quiz-opts-row{flex-direction:row;flex-wrap:wrap}
+.quiz-opt{font-family:'Hanken Grotesk',sans-serif;font-size:16px;font-weight:500;color:var(--text);background:var(--surface);border:1px solid var(--line2);border-radius:14px;padding:18px 22px;text-align:left;cursor:pointer;transition:border-color .2s,background .2s,transform .15s var(--ease-out);display:flex;align-items:center;justify-content:space-between;gap:12px;-webkit-tap-highlight-color:transparent}
+.quiz-opts-row .quiz-opt{flex:1;min-width:120px;justify-content:center;text-align:center}
+.quiz-opt::after{content:"→";color:var(--gold);opacity:0;transform:translateX(-6px);transition:opacity .2s,transform .2s}
+.quiz-opts-row .quiz-opt::after{display:none}
+.quiz-opt:hover{border-color:var(--gold);background:var(--surface2);transform:translateX(4px)}
+.quiz-opts-row .quiz-opt:hover{transform:translateY(-3px)}
+.quiz-opt:hover::after{opacity:1;transform:none}
+.quiz-result{text-align:center}
+.quiz-result-big{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(24px,3.2vw,38px);font-weight:600;letter-spacing:-.03em;line-height:1.15;color:var(--text);max-width:20ch;margin:0 auto}
+.quiz-result-big b{color:var(--gold-bright)}
+.quiz-result-sub{font-size:15px;line-height:1.65;color:var(--muted);max-width:52ch;margin:18px auto 0}
+.quiz-result-sub b{color:var(--text);font-weight:600}
+.quiz-cta-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:30px}
+.quiz-restart{margin-top:20px;background:none;border:none;color:var(--muted2);font-family:'Hanken Grotesk',sans-serif;font-size:13px;cursor:pointer;transition:color .2s}
+.quiz-restart:hover{color:var(--gold)}
+.audit-book,.audit-call{display:inline-flex;align-items:center;gap:8px}
+
+/* ══ Process flow — travelling dot ══ */
+.flow-rail-dot{position:absolute;top:50%;left:0;width:11px;height:11px;border-radius:50%;background:var(--gold-bright);transform:translate(-50%,-50%);opacity:0;transition:opacity .3s;z-index:2}
+@media (prefers-reduced-motion:reduce){.flow-rail-dot{display:none}}
+@media (max-width:640px){
+  .quiz-q{max-width:none}
+  .quiz-opt{font-size:15px;padding:16px 18px}
+}
+</style>
+
+<!-- ── Structured data (Schema.org / JSON-LD) ─────────────────── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["ProfessionalService", "Organization"],
+      "@id": "https://closecraftwebsites.com/#organization",
+      "name": "CloseCraft",
+      "alternateName": "CloseCraft Websites",
+      "url": "https://closecraftwebsites.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://closecraftwebsites.com/#logo",
+        "url": "https://closecraftwebsites.com/img/og-image.png",
+        "width": 1200,
+        "height": 630,
+        "caption": "CloseCraft"
+      },
+      "image": { "@id": "https://closecraftwebsites.com/#logo" },
+      "description": "CloseCraft helps local businesses cut the busywork — custom software, automation and websites that take repetitive admin off your plate. Every project starts with a free efficiency audit. Automation and custom software from A$1,500, websites from A$499. Melbourne-based, working Australia-wide.",
+      "slogan": "Cut the busywork out of your business.",
+      "email": "corbyn@closecraftwebsites.com",
+      "telephone": "+61481724443",
+      "foundingDate": "2024",
+      "priceRange": "A$499–A$15000+",
+      "currenciesAccepted": "AUD",
+      "founder": { "@id": "https://closecraftwebsites.com/#corbyn" },
+      "knowsAbout": [
+        "Business process automation",
+        "Workflow automation",
+        "Custom software development",
+        "AI implementation for small business",
+        "Admin and email automation",
+        "Web design",
+        "Web development",
+        "Custom websites",
+        "Small business systems"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Melbourne",
+        "addressRegion": "VIC",
+        "addressCountry": "AU"
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Melbourne" },
+        { "@type": "Country", "name": "Australia" },
+        { "@type": "Place", "name": "Worldwide" }
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "email": "corbyn@closecraftwebsites.com",
+        "telephone": "+61481724443",
+        "availableLanguage": "English",
+        "areaServed": "AU"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Automation, custom software & website services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Free efficiency audit",
+            "description": "A free 30-minute audit of a local business's day-to-day to find the biggest repetitive time-sink and whether it's worth automating. No cost, no obligation.",
+            "priceCurrency": "AUD",
+            "price": "0",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Business efficiency audit",
+              "serviceType": "Business process and automation audit",
+              "provider": { "@id": "https://closecraftwebsites.com/#organization" }
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Automation & custom software",
+            "description": "Custom software and automation that removes repetitive admin — email triage and drafted replies, quoting, bookings, invoicing, data entry and reporting. Built around how the business already works, at a fixed price agreed up front. Larger custom builds quoted after the free audit.",
+            "priceCurrency": "AUD",
+            "price": "1500",
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "priceCurrency": "AUD",
+              "price": "1500",
+              "valueAddedTaxIncluded": false,
+              "minPrice": "1500"
+            },
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Business automation & custom software",
+              "serviceType": "Business process automation and custom software development",
+              "provider": { "@id": "https://closecraftwebsites.com/#organization" }
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Standard website build",
+            "description": "A clean, custom-built website for a local business — mobile-first, fast, and set up to bring in enquiries. Contact form, click-to-call, Google-friendly technical setup included. Yours to keep outright.",
+            "priceCurrency": "AUD",
+            "price": "499",
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "priceCurrency": "AUD",
+              "price": "499",
+              "valueAddedTaxIncluded": false,
+              "minPrice": "499"
+            },
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Standard website build",
+              "serviceType": "Custom website design & development",
+              "provider": { "@id": "https://closecraftwebsites.com/#organization" }
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Custom build",
+            "description": "For businesses that need more — multiple pages, booking systems, online enquiries, e-commerce, or a simple admin so you can edit content yourself. Quoted by scope after a quick chat.",
+            "priceCurrency": "AUD",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Custom website & business systems",
+              "serviceType": "Custom website with booking, e-commerce or content management",
+              "provider": { "@id": "https://closecraftwebsites.com/#organization" }
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Care",
+            "description": "Optional monthly plan that keeps your site live and healthy — hosting, security, software updates, basic monitoring, and small content tweaks. Month-to-month, no lock-in.",
+            "priceCurrency": "AUD",
+            "price": "50",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "priceCurrency": "AUD",
+              "price": "50",
+              "referenceQuantity": { "@type": "QuantitativeValue", "value": "1", "unitCode": "MON" }
+            },
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Website care & hosting",
+              "serviceType": "Website hosting, maintenance & security",
+              "provider": { "@id": "https://closecraftwebsites.com/#organization" }
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Priority",
+            "description": "Everything in Care, plus faster support, higher-priority changes, and one larger content or revision request each month. Month-to-month, no lock-in.",
+            "priceCurrency": "AUD",
+            "price": "100",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "priceCurrency": "AUD",
+              "price": "100",
+              "referenceQuantity": { "@type": "QuantitativeValue", "value": "1", "unitCode": "MON" }
+            },
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Priority website care & hosting",
+              "serviceType": "Priority website hosting, maintenance & support",
+              "provider": { "@id": "https://closecraftwebsites.com/#organization" }
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "NFC Google review tag",
+            "description": "A tap-to-review NFC card set up for your Google review page. Customers tap their phone and go straight to leaving you a review. One-time purchase, set up and ready to use.",
+            "priceCurrency": "AUD",
+            "price": "50",
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "priceCurrency": "AUD",
+              "price": "50",
+              "valueAddedTaxIncluded": false
+            },
+            "itemOffered": {
+              "@type": "Product",
+              "name": "NFC Google review tag",
+              "provider": { "@id": "https://closecraftwebsites.com/#organization" }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://closecraftwebsites.com/#corbyn",
+      "name": "Corbyn Miller",
+      "jobTitle": "Founder",
+      "worksFor": { "@id": "https://closecraftwebsites.com/#organization" },
+      "homeLocation": {
+        "@type": "Place",
+        "name": "Melbourne, Australia"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://closecraftwebsites.com/#website",
+      "url": "https://closecraftwebsites.com/",
+      "name": "CloseCraft",
+      "description": "Custom websites for businesses, creators & brands.",
+      "publisher": { "@id": "https://closecraftwebsites.com/#organization" },
+      "inLanguage": "en-AU"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://closecraftwebsites.com/#webpage",
+      "url": "https://closecraftwebsites.com/",
+      "name": "CloseCraft — Custom Websites for Businesses, Creators & Brands",
+      "description": "CloseCraft is a Melbourne studio building custom websites and simple business systems for small businesses, creators, and brands. Fast, tailored, mobile-first. No templates, no lock-in.",
+      "isPartOf": { "@id": "https://closecraftwebsites.com/#website" },
+      "about": { "@id": "https://closecraftwebsites.com/#organization" },
+      "primaryImageOfPage": { "@id": "https://closecraftwebsites.com/#logo" },
+      "inLanguage": "en-AU"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://closecraftwebsites.com/#faq",
+      "isPartOf": { "@id": "https://closecraftwebsites.com/#webpage" },
+      "inLanguage": "en-AU",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much does a website cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A standard custom website is A$499 — a clean, mobile-first site built to bring in enquiries, and yours to keep outright. Bigger jobs (booking systems, e-commerce, multiple pages, or an editable admin) are quoted by scope after a quick chat. Everything is priced up front — no surprises, no lock-in."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does a project take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most sites launch in roughly two weeks. The process is three simple steps: a 15-minute call, the build (with drafts as we go and two rounds of revisions), then going live on your own domain."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I own the website when it's done?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes — completely. It's a one-off build that launches on your own domain and is yours to keep outright. Optional monthly care and hosting is available if you'd rather have it looked after, but there's never any lock-in."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you work with clients outside Melbourne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "CloseCraft is a Melbourne studio, but the whole process runs remotely, so clients anywhere are welcome. Recent projects have spanned Australia and beyond."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you use templates or page builders?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Every site is custom-built from scratch to fit the brief, designed mobile-first and built to load fast. Nothing is dropped into a template."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What about hosting, updates, and maintenance?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Two optional monthly plans keep your site looked after. Care (A$50/month) covers hosting, security, software updates, basic monitoring, and small content tweaks. Priority (A$100/month) adds faster support, higher-priority changes, and one larger content or revision request each month. Both are month-to-month — cancel anytime, no lock-in."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the NFC Google review tags?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A small tap-to-review card you keep on your counter. Customers tap it with their phone and go straight to your Google review page — no searching, no typing. It's a one-time purchase (A$50 each, or 2 for A$80) and I set it up linked to your business, ready to use."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you build more than a website — like booking systems?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Booking systems, online enquiries, e-commerce, editable admin dashboards and simple business tools are all quoted by scope after a quick chat. Same approach: clean, honest, and yours to keep."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://closecraftwebsites.com/#selected-work",
+      "name": "Selected work",
+      "description": "A selection of websites and custom software built by CloseCraft, across community publishing, journalism and music.",
+      "itemListOrder": "https://schema.org/ItemListOrderAscending",
+      "numberOfItems": 3,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "WebSite",
+            "name": "Pohutukawa Coast Times",
+            "description": "A community newspaper with custom software so the team runs it themselves — issues and notices uploaded without a developer.",
+            "url": "https://pctimes.netlify.app/"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "WebSite",
+            "name": "Leah D. Cruz",
+            "description": "A journalist portfolio — quiet, considered, designed to put the work first.",
+            "url": "https://leahdcruz.com/"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "WebSite",
+            "name": "Soundbyte Studios",
+            "description": "A Melbourne DJ & recording studio — dark, atmospheric, built for bookings.",
+            "url": "http://soundbytestudios.org/"
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div id="intro" aria-hidden="true">
+  <div class="mark">Close<em>Craft</em></div>
+  <div class="line"></div>
+</div>
+
+<div id="bar" role="progressbar" aria-label="Scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+<div id="cur" aria-hidden="true"></div>
+<div id="cur2" aria-hidden="true"></div>
+
+<!-- floating work preview -->
+<!-- ── NAV ────────────────────────────── -->
+<div class="mob-menu" id="mob" aria-modal="true" role="dialog" aria-label="Navigation">
+  <a href="#offer" onclick="toggleMob()">What I do <em>01</em></a>
+  <a href="#audit" onclick="toggleMob()">Free audit <em>02</em></a>
+  <a href="#process" onclick="toggleMob()">Process <em>03</em></a>
+  <a href="#nfc" onclick="toggleMob()">Review tags <em>04</em></a>
+  <a href="#work" onclick="toggleMob()">Work <em>05</em></a>
+  <a href="#faq" onclick="toggleMob()">FAQ <em>06</em></a>
+  <a href="#contact" onclick="toggleMob()">Contact <em>07</em></a>
+</div>
+
+<nav id="nav">
+  <a href="#hero" class="nav-logo">Close<em>Craft</em></a>
+  <ul class="nav-links">
+    <li><a href="#offer">What I do</a></li>
+    <li><a href="#audit">Free audit</a></li>
+    <li><a href="#nfc">Review tags</a></li>
+    <li><a href="#work">Work</a></li>
+  </ul>
+  <a href="#audit" class="nav-cta magnet"><span class="dot"></span>Book a free audit</a>
+  <button class="hamburger" id="ham" onclick="toggleMob()" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── HERO ────────────────────────────── -->
+<section id="hero" aria-label="Hero">
+  <div class="glow" id="glow" aria-hidden="true"></div>
+
+  <div class="hero-grid">
+
+    <div class="hero-copy">
+      <h1 class="hero-h1">
+        <span class="mask"><span>Cut the</span></span>
+        <span class="mask m2"><span><em>busywork.</em></span></span>
+      </h1>
+      <p class="hero-sub fu d2">
+        Custom software, automation and websites that take the repetitive admin off your plate — so you can get back to the actual work.
+      </p>
+      <div class="hero-actions fu d3">
+        <a href="#audit" class="btn-p magnet">
+          <span>Book a free audit</span>
+          <span class="arrow" aria-hidden="true">
+            <svg width="16" height="14" viewBox="0 0 16 14" fill="none"><path d="M1 7H15M15 7L9 1M15 7L9 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+        <a href="#work" class="btn-g">See the work</a>
+      </div>
+    </div>
+
+    <div class="hero-demo fu d2" id="heroDemo" aria-hidden="true">
+      <div class="demo-head"><span>A typical week</span><span class="demo-week">Mon–Fri</span></div>
+      <ul class="demo-list">
+        <li><span class="demo-check" aria-hidden="true"></span><span class="demo-task">Sorting the inbox</span></li>
+        <li><span class="demo-check" aria-hidden="true"></span><span class="demo-task">Drafting the same replies</span></li>
+        <li><span class="demo-check" aria-hidden="true"></span><span class="demo-task">Sending out quotes</span></li>
+        <li><span class="demo-check" aria-hidden="true"></span><span class="demo-task">Chasing unpaid invoices</span></li>
+        <li><span class="demo-check" aria-hidden="true"></span><span class="demo-task">Updating the spreadsheet</span></li>
+      </ul>
+      <div class="demo-foot"><span class="demo-dot"></span><span id="demoStatus">Handled automatically</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── TRUST STRIP ─────────────────────── -->
+<div class="strip">
+  <span class="strip-lead">Built for</span>
+  <ul class="strip-list">
+    <li>Tradies</li><li>Cafés</li><li>Salons</li><li>Local services</li>
+    <li>Hospitality</li><li>Retail &amp; shops</li><li>Creators</li>
+  </ul>
+</div>
+
+<!-- ── OFFER / STUDIO ────────────────────── -->
+<section id="offer" aria-label="What the studio offers">
+  <div class="sec-head">
+    <div class="fu">
+      <span class="num">What I do</span>
+      <h2 class="sec-h2">I take work<br>off your <em>plate.</em></h2>
+    </div>
+    <p class="sec-lede fu d1">
+      I find the admin that's eating your week, build the one system that handles it, and measure what it saves you. <strong>Fewer things to deal with, not more.</strong>
+    </p>
+  </div>
+
+  <div class="price-grid">
+
+    <div class="price-card feat fu">
+      <h3 class="price-title">Automation &amp; <em>custom software</em></h3>
+      <div class="price-amount"><span class="price-from">from</span><span class="price-num">$1,500</span></div>
+      <div class="price-unit">AUD · fixed scope, agreed up front</div>
+      <p class="price-desc">Systems that handle your repetitive admin — email, quoting, bookings, invoicing, data entry.</p>
+      <ul class="price-feats">
+        <li class="price-feat">Built around how you already work</li>
+        <li class="price-feat">You review &amp; approve — stay in control</li>
+        <li class="price-feat">I measure what it saves you</li>
+      </ul>
+      <a href="#audit" class="price-cta">Book a free audit <span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+
+    <div class="price-card fu d1">
+      <h3 class="price-title">Websites <em>&amp; online</em></h3>
+      <div class="price-amount"><span class="price-from">from</span><span class="price-num">$499</span></div>
+      <div class="price-unit">AUD · one-off, yours to keep</div>
+      <p class="price-desc">Sharp, fast sites that bring in enquiries — with booking or online stores if you need them.</p>
+      <ul class="price-feats">
+        <li class="price-feat">Custom design, not a template</li>
+        <li class="price-feat">Mobile-first &amp; fast-loading</li>
+        <li class="price-feat">Live in about two weeks</li>
+      </ul>
+      <a href="#contact" class="price-cta">Get a quote <span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+
+    <div class="price-card fu d2">
+      <h3 class="price-title">Ongoing <em>care</em></h3>
+      <div class="price-amount"><span class="price-from">from</span><span class="price-num">$50<span style="font-size:20px;color:var(--muted)">/mo</span></span></div>
+      <div class="price-unit">AUD · month-to-month, cancel anytime</div>
+      <p class="price-desc">Everything kept running and improving over time, so you never have to think about it.</p>
+      <ul class="price-feats">
+        <li class="price-feat">Hosting, security &amp; updates</li>
+        <li class="price-feat">Small tweaks included</li>
+        <li class="price-feat">Systems care from $200/mo</li>
+      </ul>
+      <a href="#contact" class="price-cta">Enquire <span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+
+  </div>
+
+  <p class="offer-mini fu">Every project starts with a <a href="#audit">free 30-minute efficiency audit</a>. If I can't save you time or money, I'll tell you straight — no cost, no obligation.</p>
+</section>
+
+<!-- ── SELF-AUDIT ────────────────────────── -->
+<section id="audit" aria-label="Free efficiency audit">
+  <div class="audit-inner">
+    <div class="audit-head fu">
+      <span class="eyebrow">Free audit</span>
+      <h2 class="audit-h2">Where's your time <em>going?</em></h2>
+      <p class="audit-lede">Three quick questions. I'll show you roughly how much time and money you're losing — then a free 30-minute call to see what I can take off your plate. No cost, no obligation.</p>
+    </div>
+
+    <div class="audit-card fu d1">
+      <div class="quiz" id="quiz">
+        <div class="quiz-top">
+          <span class="quiz-step-label" id="quizLabel">Question 1 of 3</span>
+          <span class="quiz-bar"><span class="quiz-bar-fill" id="quizBar"></span></span>
+        </div>
+
+        <div class="quiz-step active" data-q="business type">
+          <h3 class="quiz-q">What kind of business do you run?</h3>
+          <div class="quiz-opts">
+            <button class="quiz-opt" type="button">Trades &amp; construction</button>
+            <button class="quiz-opt" type="button">Hospitality / café</button>
+            <button class="quiz-opt" type="button">Retail / shop</button>
+            <button class="quiz-opt" type="button">Health / clinic</button>
+            <button class="quiz-opt" type="button">Professional services</button>
+            <button class="quiz-opt" type="button">Something else</button>
+          </div>
+        </div>
+
+        <div class="quiz-step" data-q="biggest time-drain" data-multi>
+          <h3 class="quiz-q">What eats most of your time? <span style="font-size:14px;font-weight:400;color:var(--muted)">Pick any that apply.</span></h3>
+          <div class="quiz-opts">
+            <button class="quiz-opt" type="button">Answering emails &amp; enquiries</button>
+            <button class="quiz-opt" type="button">Quoting &amp; estimates</button>
+            <button class="quiz-opt" type="button">Bookings &amp; scheduling</button>
+            <button class="quiz-opt" type="button">Invoicing &amp; chasing payment</button>
+            <button class="quiz-opt" type="button">Data entry &amp; paperwork</button>
+            <button class="quiz-opt" type="button">Reports &amp; spreadsheets</button>
+          </div>
+          <button class="quiz-next" type="button" id="quizNext" disabled>Next <span aria-hidden="true">→</span></button>
+        </div>
+
+        <div class="quiz-step" data-q="admin hours/week">
+          <h3 class="quiz-q">Roughly how many hours a week on admin?</h3>
+          <div class="quiz-opts quiz-opts-row">
+            <button class="quiz-opt" type="button" data-h="3">Under 5</button>
+            <button class="quiz-opt" type="button" data-h="7">5–10</button>
+            <button class="quiz-opt" type="button" data-h="15">10–20</button>
+            <button class="quiz-opt" type="button" data-h="25">20+</button>
+          </div>
+        </div>
+
+        <div class="quiz-step quiz-result" aria-live="polite">
+          <h3 class="quiz-result-big" id="quizBig"></h3>
+          <p class="quiz-result-sub" id="quizSub"></p>
+          <div class="quiz-cta-row">
+            <a href="mailto:corbyn@closecraftwebsites.com" class="audit-book" id="quizBook">Book my free audit <span aria-hidden="true">→</span></a>
+            <a href="tel:+61481724443" class="audit-call">Or call directly</a>
+          </div>
+          <button class="quiz-restart" type="button" id="quizRestart">↺ Start over</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── NFC REVIEW TAGS ───────────────────── -->
+<section id="nfc" aria-label="NFC Google review tags">
+  <div class="nfc-inner">
+
+    <div class="nfc-text">
+      <span class="eyebrow fu">Review tags</span>
+      <h2 class="nfc-h2 fu d1">Turn happy customers into <em>Google reviews.</em></h2>
+      <p class="nfc-lede fu d2">
+        A small <strong>tap-to-review card</strong> for your counter. A customer taps it with their phone and lands straight on your Google review page — no searching, no typing. More reviews means you show up higher when locals search, which means more customers. <strong>I set it up linked to your business, ready to go.</strong>
+      </p>
+
+      <div class="nfc-steps fu d3">
+        <div class="nfc-step">
+          <span class="nfc-step-n">i.</span>
+          <div>
+            <div class="nfc-step-t">They tap the card.</div>
+            <div class="nfc-step-d">Works on any modern phone — no app, no QR code fiddling.</div>
+          </div>
+        </div>
+        <div class="nfc-step">
+          <span class="nfc-step-n">ii.</span>
+          <div>
+            <div class="nfc-step-t">Straight to your reviews.</div>
+            <div class="nfc-step-d">It opens your Google review page instantly — one less step, more reviews left.</div>
+          </div>
+        </div>
+        <div class="nfc-step">
+          <span class="nfc-step-n">iii.</span>
+          <div>
+            <div class="nfc-step-t">I handle the setup.</div>
+            <div class="nfc-step-d">You get it configured and working — just put it on the counter.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nfc-card fu d2">
+      <div class="nfc-photo-wrap">
+        <img class="nfc-photo" src="img/nfc-tag.jpg" width="1100" height="1100" loading="lazy" decoding="async" alt="CloseCraft NFC Google review tag — a customer taps their phone to leave a Google review">
+        <span class="nfc-photo-tag">Real tag · set up &amp; ready</span>
+      </div>
+      <div class="nfc-prices">
+        <div class="nfc-price">
+          <div class="n"><sup>$</sup>50</div>
+          <span class="q">One tag</span>
+        </div>
+        <div class="nfc-price best">
+          <div class="n"><sup>$</sup>80</div>
+          <span class="q">Two tags</span>
+        </div>
+      </div>
+      <p class="nfc-note">One-time purchase, AUD. Set up and linked to your Google business — no ongoing fees.</p>
+      <a href="mailto:corbyn@closecraftwebsites.com?subject=NFC%20Review%20Tags%20%E2%80%93%20CloseCraft&body=Hi%20Corbyn%2C%0A%0AI'm%20interested%20in%20the%20NFC%20Google%20review%20tags.%0A%0ABusiness%20name%3A%20%0AHow%20many%3A%20%0A%0AThanks" class="nfc-btn">Ask about review tags <span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── PROCESS ───────────────────────────── -->
+<section id="process" class="dense" aria-label="Process">
+  <div class="sec-head">
+    <div class="fu">
+      <span class="num">Process</span>
+      <h2 class="sec-h2">Audit. Build.<br><em>Measure.</em></h2>
+    </div>
+    <p class="sec-lede fu d1">
+      No jargon, no fifteen-tab onboarding deck. We find the one thing worth fixing, I build it at a fixed price you agree up front, and then we check it actually saved you time. If it won't, I'll tell you before you spend a cent.
+    </p>
+  </div>
+
+  <div class="flow" id="flow">
+    <div class="flow-rail" aria-hidden="true"><div class="flow-rail-fill"></div><span class="flow-rail-dot"></span></div>
+    <div class="flow-step">
+      <div class="flow-node">1</div>
+      <div class="flow-txt">
+        <h3 class="flow-h3">Audit</h3>
+        <p class="flow-p">A free 30-minute chat about your day-to-day. I find the biggest repetitive time-sink and whether it's worth automating.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-node">2</div>
+      <div class="flow-txt">
+        <h3 class="flow-h3">Build</h3>
+        <p class="flow-p">I build the one system that removes that work — fixed price, agreed before I start. You review and approve as it comes together.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-node">3</div>
+      <div class="flow-txt">
+        <h3 class="flow-h3">Measure</h3>
+        <p class="flow-p">We check the before and after. You see the hours and money it's actually saving — and I keep improving it if you want.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOUNDER ───────────────────────────── -->
+<section id="founder" aria-label="About the founder">
+  <div class="founder-inner">
+
+    <div class="founder-text">
+      <span class="eyebrow fu">Why CloseCraft exists</span>
+      <h2 class="founder-h2 fu d1">A lot of good businesses<br>drown in <em>busywork.</em></h2>
+      <p class="founder-p fu d2">
+        Owners end up doing the same admin over and over — retyping the same emails, chasing the same invoices, copying data between the same spreadsheets. Not because they want to, but because fixing it felt expensive or complicated. CloseCraft started from that gap.
+      </p>
+      <p class="founder-p fu d3">
+        I've built websites and custom software across trades, fashion, music and community publishing — including software that lets a newspaper run itself without calling a developer. The approach stays the same: understand the work properly, build the one thing that removes it, <strong>and measure what it actually saves.</strong> No padding, no lock-in.
+      </p>
+      <div class="founder-sig fu d4">— Corbyn Miller</div>
+
+      <div class="founder-stats fu d5">
+        <div class="fstat">
+          <div class="fstat-n">5</div>
+          <div class="fstat-l">Projects live</div>
+        </div>
+        <div class="fstat">
+          <div class="fstat-n">~2wk</div>
+          <div class="fstat-l">Avg. launch</div>
+        </div>
+        <div class="fstat">
+          <div class="fstat-n">Global</div>
+          <div class="fstat-l">Clients welcome</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="founder-card fu d2">
+      <div class="founder-port">
+        <div class="founder-mono">CM</div>
+        <div class="founder-port-meta">
+          <div class="founder-name">Corbyn Miller</div>
+          <div class="founder-role">Founder<span class="dot"></span>Melbourne, AU</div>
+        </div>
+      </div>
+
+      <div class="principles">
+        <div class="principle">
+          <span class="principle-n">i.</span>
+          <div>
+            <div class="principle-t">Custom, not templated.</div>
+            <div class="principle-d">Every project built from scratch to fit the brief.</div>
+          </div>
+        </div>
+        <div class="principle">
+          <span class="principle-n">ii.</span>
+          <div>
+            <div class="principle-t">Mobile-first, always.</div>
+            <div class="principle-d">Tested on phones first. Not as an afterthought.</div>
+          </div>
+        </div>
+        <div class="principle">
+          <span class="principle-n">iii.</span>
+          <div>
+            <div class="principle-t">You own it outright.</div>
+            <div class="principle-d">One-off build, yours to keep. Optional care &amp; hosting if you want it handled.</div>
+          </div>
+        </div>
+        <div class="principle">
+          <span class="principle-n">iv.</span>
+          <div>
+            <div class="principle-t">Straight advice, always.</div>
+            <div class="principle-d">If it won't move the needle, you'll be told. No buzzwords.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── SELECTED WORK ────────────────────── -->
+<section id="work" aria-label="Selected work">
+  <div class="sec-head">
+    <div class="fu">
+      <span class="num">Selected work</span>
+      <h2 class="sec-h2">A few recent <em>builds.</em></h2>
+    </div>
+    <p class="sec-lede fu d1">
+      Websites and custom software, built to fit the brief. Tap any to visit the live site.
+    </p>
+  </div>
+
+  <div class="work-grid">
+
+    <a href="https://pctimes.netlify.app/" target="_blank" rel="noopener" class="work-card fu work-wide">
+      <div class="work-shot"><img src="img/pctimes.jpg" alt="Pohutukawa Coast Times website" loading="lazy" decoding="async"></div>
+      <div class="work-meta">
+        <div class="work-info">
+          <div class="work-title">Pohutukawa <em>Coast Times</em></div>
+          <p class="work-desc2">A community newspaper with custom software I built so the team runs it themselves — uploading issues and notices without ever calling a developer.</p>
+          <div class="work-tags2"><span class="work-tag2">Custom software</span><span class="work-tag2">Self-service</span></div>
+        </div>
+        <span class="work-go" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 14L14 4M14 4H6M14 4V12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+
+    <a href="https://leahdcruz.com/" target="_blank" rel="noopener" class="work-card fu">
+      <div class="work-shot"><img src="img/leah-screen.jpg" alt="Leah D. Cruz journalist portfolio website" loading="lazy" decoding="async"></div>
+      <div class="work-meta">
+        <div class="work-info">
+          <div class="work-title">Leah D. <em>Cruz</em></div>
+          <p class="work-desc2">A journalist's portfolio — clean and editorial, built to put the writing first.</p>
+          <div class="work-tags2"><span class="work-tag2">Portfolio</span><span class="work-tag2">Editorial</span></div>
+        </div>
+        <span class="work-go" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 14L14 4M14 4H6M14 4V12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+
+    <a href="http://soundbytestudios.org/" target="_blank" rel="noopener" class="work-card fu d1">
+      <div class="work-shot"><img src="img/soundbyte-screen.jpg" alt="Soundbyte Studios DJ &amp; recording studio website" loading="lazy" decoding="async"></div>
+      <div class="work-meta">
+        <div class="work-info">
+          <div class="work-title">Soundbyte <em>Studios</em></div>
+          <p class="work-desc2">A Melbourne DJ &amp; recording studio — dark, atmospheric, built for bookings.</p>
+          <div class="work-tags2"><span class="work-tag2">Music</span><span class="work-tag2">Bookings</span></div>
+        </div>
+        <span class="work-go" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 14L14 4M14 4H6M14 4V12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ── FAQ ───────────────────────────────── -->
+<section id="faq" aria-label="Frequently asked questions">
+  <div class="sec-head">
+    <div class="fu">
+      <span class="num">FAQ</span>
+      <h2 class="sec-h2">The usual<br><em>questions.</em></h2>
+    </div>
+    <p class="sec-lede fu d1">
+      What I do, what it costs, and how the free audit works. If yours isn't here, a quick chat sorts it out.
+    </p>
+  </div>
+
+  <div class="faq-list fu">
+    <details class="faq-item">
+      <summary class="faq-q">What exactly do you do?<span class="faq-ico" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p>I help local businesses <strong>spend less time and money on admin</strong>. That usually means custom software or automation that handles a repetitive job for you — things like email triage and drafted replies, quoting, bookings, invoicing, data entry or reporting. I also build websites. The aim is always <strong>fewer things to deal with, not more</strong>.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">What's the free audit?<span class="faq-ico" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p>A free <strong>30-minute chat</strong> about how your business actually runs. I look for the biggest repetitive time-sink and whether it's worth automating. If I can help, I'll tell you exactly how and what it'd cost. <strong>If I can't genuinely save you time or money, I'll say so</strong> — no cost, no obligation either way.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">How much does automation cost?<span class="faq-ico" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p>Most automation and custom-software projects <strong>start from A$1,500</strong>, at a <strong>fixed price agreed before I start</strong> — no hourly surprises. Bigger custom builds are quoted after the free audit, once I understand the work. The point is simple: it should save you more than it costs.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">How much does a website cost?<span class="faq-ico" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p>A standard custom website is <strong>A$499</strong> — clean, mobile-first, built to bring in enquiries, and yours to keep. Bigger sites (booking systems, online stores, editable admin) are quoted up front. No templates, no lock-in.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">Isn't this just "adding AI" for the sake of it?<span class="faq-ico" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p>No — and that's the whole point. I'm not here to sell you five new apps to log into. AI does some of the heavy lifting behind the scenes, but what you're paying for is <strong>work removed from your plate</strong> and a measurable before-and-after. If it doesn't save real time or money, it's not worth building.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">What about ongoing support?<span class="faq-ico" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p>Optional and month-to-month. <strong>Website care from A$50/month</strong> keeps a site hosted, updated and looked after. <strong>Systems care from A$200/month</strong> keeps automations running and improving over time. Cancel anytime — no lock-in.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">Do you work with businesses outside Melbourne?<span class="faq-ico" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p>I'm <strong>Melbourne-based</strong>, but the whole process runs remotely, so businesses anywhere are welcome. The free audit is a quick call or video chat.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">What are the NFC Google review tags?<span class="faq-ico" aria-hidden="true"></span></summary>
+      <div class="faq-a"><p>A small tap-to-review card for your counter. Customers tap it with their phone and go straight to your Google review page — no searching, no typing. One-time purchase (<strong>A$50 each, or 2 for A$80</strong>), set up linked to your business. A simple, cheap way to get more reviews and an easy first thing to do together.</p></div>
+    </details>
+  </div>
+</section>
+
+<!-- ── CONTACT ───────────────────────────── -->
+<section id="contact" aria-label="Get in touch">
+  <div class="cta-glow" aria-hidden="true"></div>
+  <div class="inner">
+
+    <div class="cta-grid">
+      <h2 class="cta-h2 fu">
+        Let's find<br>what's <em>slowing<br>you down.</em>
+      </h2>
+
+      <div class="cta-side fu d1">
+        <p class="cta-sub">
+          Book a <strong style="color:var(--gold-bright);font-weight:500">free 30-minute efficiency audit</strong>. Tell me how your business runs day-to-day and I'll tell you straight where you're losing time — and whether I can fix it. No cost, no obligation. (Websites and review tags too, if that's what you need.)
+        </p>
+
+        <div class="cta-actions">
+          <a href="tel:+61481724443" class="cta-row">
+            <span class="cta-row-label">Call directly</span>
+            <span class="cta-row-meta">
+              +61 481 724 443
+              <span class="cta-row-arrow" aria-hidden="true">
+                <svg width="14" height="12" viewBox="0 0 14 12" fill="none"><path d="M1 6H13M13 6L8 1M13 6L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </span>
+          </a>
+          <a href="mailto:corbyn@closecraftwebsites.com?subject=Free%20Efficiency%20Audit%20%E2%80%93%20CloseCraft&body=Hi%20Corbyn%2C%0A%0AI'd%20like%20to%20book%20a%20free%2030-minute%20audit.%0A%0ABusiness%3A%20%0AWhat%20I%20do%3A%20%0AWhat%20eats%20my%20time%3A%20%0APhone%3A%20%0A%0AThanks" class="cta-row">
+            <span class="cta-row-label">Send an email</span>
+            <span class="cta-row-meta">
+              corbyn@closecraftwebsites.com
+              <span class="cta-row-arrow" aria-hidden="true">
+                <svg width="14" height="12" viewBox="0 0 14 12" fill="none"><path d="M1 6H13M13 6L8 1M13 6L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-bottom fu d2">
+      <span class="cta-note">30 minutes · No pressure · Just honest advice</span>
+      <span class="cta-loc">Melbourne · working Australia-wide, remote</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── FOOTER ───────────────────────────── -->
+<footer>
+  <a href="#hero" class="foot-logo">Close<em>Craft</em></a>
+  <ul class="foot-links">
+    <li><a href="#offer">What I do</a></li>
+    <li><a href="#audit">Free audit</a></li>
+    <li><a href="#nfc">Review tags</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="foot-copy">© 2026 CloseCraft</div>
+</footer>
+
+<script>
+var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ── Intro curtain ────────────────────
+function reveal(){document.body.classList.add('loaded')}
+if(reduced){reveal()}
+else{
+  var done=false;
+  window.addEventListener('load',function(){if(!done){done=true;setTimeout(reveal,500)}});
+  setTimeout(function(){if(!done){done=true;reveal()}},1800);
+}
+
+// ── Nav scroll state ─────────────────
+var nav=document.getElementById('nav');
+window.addEventListener('scroll',function(){
+  if(window.scrollY>30){nav.classList.add('compact')}else{nav.classList.remove('compact')}
+},{passive:true});
+
+// ── Scroll progress bar ──────────────
+var bar=document.getElementById('bar');
+window.addEventListener('scroll',function(){
+  var h=document.documentElement,b=document.body;
+  var st=h.scrollTop||b.scrollTop;
+  var sh=(h.scrollHeight||b.scrollHeight)-h.clientHeight;
+  var p=sh>0?(st/sh)*100:0;
+  bar.style.transform='scaleX('+(p/100).toFixed(4)+')';
+  bar.setAttribute('aria-valuenow',Math.round(p));
+},{passive:true});
+
+// ── Mobile menu ──────────────────────
+function toggleMob(){
+  var m=document.getElementById('mob'),h=document.getElementById('ham');
+  var open=m.classList.toggle('open');
+  h.classList.toggle('open',open);
+  h.setAttribute('aria-expanded',open?'true':'false');
+  document.body.style.overflow=open?'hidden':'';
+}
+
+// ── Reveal on scroll ─────────────────
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
+    });
+  },{rootMargin:'0px 0px -10% 0px',threshold:.05});
+  document.querySelectorAll('.fu').forEach(function(el){io.observe(el)});
+}else{
+  document.querySelectorAll('.fu').forEach(function(el){el.classList.add('in')});
+}
+
+// ── Scroll-driven process flow ───────
+(function(){
+  var flow=document.getElementById('flow'); if(!flow) return;
+  var fill=flow.querySelector('.flow-rail-fill');
+  var dot=flow.querySelector('.flow-rail-dot');
+  var steps=[].slice.call(flow.querySelectorAll('.flow-step'));
+  if(reduced){ if(fill) fill.style.transform='scaleX(1)'; steps.forEach(function(s){s.classList.add('on')}); return; }
+  var ticking=false;
+  function update(){
+    ticking=false;
+    var r=flow.getBoundingClientRect(), vh=window.innerHeight;
+    var p=(vh*0.82 - r.top)/(r.height*0.55 + vh*0.15);
+    p=Math.max(0,Math.min(1,p));
+    if(fill) fill.style.transform='scaleX('+p.toFixed(3)+')';
+    if(dot){ dot.style.left=(p*100).toFixed(2)+'%'; dot.style.opacity=(p>0.02&&p<0.99)?'1':'0'; }
+    for(var i=0;i<steps.length;i++){
+      var thresh=i/steps.length*0.85 + 0.06;
+      steps[i].classList.toggle('on', p>=thresh);
+    }
+  }
+  window.addEventListener('scroll',function(){ if(!ticking){ticking=true;requestAnimationFrame(update);} },{passive:true});
+  window.addEventListener('resize',update,{passive:true});
+  update();
+})();
+
+// ── Efficiency-audit quiz (one question at a time) ─────────────
+(function(){
+  var quiz=document.getElementById('quiz'); if(!quiz) return;
+  var steps=[].slice.call(quiz.querySelectorAll('.quiz-step'));       // 3 questions + result
+  var qSteps=steps.slice(0,3);
+  var resultStep=steps[3];
+  var label=quiz.querySelector('#quizLabel');
+  var barFill=quiz.querySelector('#quizBar');
+  var big=quiz.querySelector('#quizBig');
+  var sub=quiz.querySelector('#quizSub');
+  var book=quiz.querySelector('#quizBook');
+  var restart=quiz.querySelector('#quizRestart');
+  var RATE=45; // $/hr used for the time-value estimate
+  var answers={};
+  var idx=0;
+
+  var next=quiz.querySelector('#quizNext');
+  function money(n){ return '$'+(Math.round(n/10)*10).toLocaleString('en-AU'); }
+
+  function show(n){
+    steps.forEach(function(s){ s.classList.remove('active'); });
+    steps[n].classList.add('active');
+    if(n<3){ label.textContent='Question '+(n+1)+' of 3'; barFill.style.transform='scaleX('+((n/3)+0.1).toFixed(3)+')'; }
+    else { label.textContent='Your result'; barFill.style.transform='scaleX(1)'; }
+  }
+
+  function joinList(a){ if(a.length===1)return a[0]; if(a.length===2)return a[0]+' and '+a[1]; return a.slice(0,-1).join(', ')+' and '+a[a.length-1]; }
+
+  function finish(){
+    var H=parseInt(answers.hours)||7;
+    var low=Math.max(1,Math.round(H*0.35)), high=Math.max(low+1,Math.round(H*0.6));
+    var moLow=low*52/12*RATE, moHigh=high*52/12*RATE;
+    var drains=answers['biggest time-drain']||['that admin'];
+    var drainTxt=joinList(drains.map(function(d){return d.toLowerCase();}));
+    big.innerHTML='You could get back <b>'+low+'–'+high+' hours a week.</b>';
+    sub.innerHTML='You said you spend <b>'+(answers.hoursLabel||'')+' hours</b> a week on admin. Automating '+drainTxt+' could hand roughly <b>'+money(moLow)+'–'+money(moHigh)+' a month</b> of that time back to you (at ~$'+RATE+'/hr). A free 30-minute audit shows exactly what\'s possible — and the fixed price to do it.';
+    var body="Hi Corbyn,%0A%0AI'd like to book the free 30-minute efficiency audit.%0A%0ABusiness type: "+(answers['business type']||'')+"%0AEats my time: "+drains.join(', ')+"%0AAdmin hours/week: "+(answers.hoursLabel||'')+"%0A%0AThanks";
+    book.href="mailto:corbyn@closecraftwebsites.com?subject=Free%20Efficiency%20Audit%20%E2%80%93%20CloseCraft&body="+body;
+    show(3);
+  }
+
+  function advance(){ idx++; if(idx<3){ show(idx); } else { finish(); } }
+
+  qSteps.forEach(function(stepEl){
+    var key=stepEl.getAttribute('data-q');
+    var multi=stepEl.hasAttribute('data-multi');
+    stepEl.querySelectorAll('.quiz-opt').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        if(multi){
+          btn.classList.toggle('sel');
+          var sel=[].slice.call(stepEl.querySelectorAll('.quiz-opt.sel')).map(function(b){return b.textContent.trim();});
+          answers[key]=sel;
+          if(next) next.disabled = sel.length===0;
+        } else {
+          answers[key]=btn.textContent.trim();
+          if(key==='admin hours/week'){ answers.hours=btn.getAttribute('data-h'); answers.hoursLabel=btn.textContent.trim(); }
+          advance();
+        }
+      });
+    });
+  });
+  if(next) next.addEventListener('click',function(){ if(!next.disabled) advance(); });
+
+  restart.addEventListener('click',function(){
+    answers={}; idx=0;
+    quiz.querySelectorAll('.quiz-opt.sel').forEach(function(b){b.classList.remove('sel');});
+    if(next) next.disabled=true;
+    show(0);
+  });
+  show(0);
+})();
+
+// ── Hero busywork demo ───────────────
+(function(){
+  var demo=document.getElementById('heroDemo'); if(!demo||reduced) return;
+  var items=[].slice.call(demo.querySelectorAll('.demo-list li'));
+  var foot=demo.querySelector('.demo-foot');
+  var i=0, phase='tick';
+  function step(){
+    if(phase==='tick'){
+      if(i<items.length){ items[i].classList.add('done'); i++; setTimeout(step,640); }
+      else { foot.classList.add('on'); phase='hold'; setTimeout(step,3400); }
+    } else {
+      foot.classList.remove('on'); items.forEach(function(it){it.classList.remove('done')}); i=0; phase='tick'; setTimeout(step,1000);
+    }
+  }
+  setTimeout(step,1100);
+})();
+
+// ── Fine-pointer enhancements ────────
+var fine = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+if(fine && !reduced){
+
+  // Custom cursor
+  var cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
+  var mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+  document.addEventListener('mousemove',function(e){
+    mx=e.clientX;my=e.clientY;
+    cur.style.transform='translate('+(mx-4)+'px,'+(my-4)+'px)';
+  },{passive:true});
+  (function ring(){
+    rx+=(mx-rx)*.14;ry+=(my-ry)*.14;
+    cur2.style.transform='translate('+(rx-19)+'px,'+(ry-19)+'px)';
+    requestAnimationFrame(ring);
+  })();
+  document.querySelectorAll('a,button').forEach(function(el){
+    el.addEventListener('mouseenter',function(){cur2.classList.add('hov')});
+    el.addEventListener('mouseleave',function(){cur2.classList.remove('hov')});
+  });
+
+  // Magnetic buttons
+  document.querySelectorAll('.magnet').forEach(function(el){
+    el.addEventListener('mousemove',function(e){
+      var r=el.getBoundingClientRect();
+      var dx=e.clientX-(r.left+r.width/2), dy=e.clientY-(r.top+r.height/2);
+      el.style.transform='translate('+dx*.18+'px,'+dy*.22+'px)';
+    });
+    el.addEventListener('mouseleave',function(){el.style.transform=''});
+  });
+
+  // Hero glow parallax
+  var glow=document.getElementById('glow');
+  window.addEventListener('scroll',function(){
+    glow.style.transform='translateY('+window.scrollY*.18+'px)';
+  },{passive:true});
+}
+</script>
+
+</body>
+</html>

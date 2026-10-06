@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CloseCraft — Owner Dashboard</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0A0A0B">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0A0A0B;--bg2:#0E0E10;--surface:#131315;--surface2:#18181B;
+  --text:#EDE9DF;--text-dim:#C9C5BA;--muted:#9B968A;--muted2:#6C685F;
+  --line:rgba(237,233,223,.08);--line2:rgba(237,233,223,.16);
+  --gold:#C9A36B;--gold-bright:#E5C896;--gold-dim:rgba(201,163,107,.14);
+  --green:#3DD68C;--red:#E06C6C;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh}
+.serif{font-family:'Fraunces',Georgia,serif}
+.mono{font-family:'IBM Plex Mono',monospace}
+a{color:var(--gold)}
+::selection{background:var(--gold);color:#0A0A0B}
+input,select,textarea,button{font-family:inherit;font-size:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:2px}
+
+/* ── Gate ─────────────────────── */
+#gate{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:26px;padding:32px}
+#gate .mark{font-family:'Fraunces',serif;font-size:clamp(30px,5vw,46px);font-weight:300;letter-spacing:-.03em}
+#gate .mark em{font-style:italic;color:var(--gold)}
+#gate .line{width:120px;height:1px;background:var(--gold);opacity:.6}
+#gate p{color:var(--muted);font-size:14px;max-width:340px;text-align:center;line-height:1.6}
+#gate .pinrow{display:flex;gap:10px}
+#gate input{width:180px;text-align:center;letter-spacing:.4em;font-family:'IBM Plex Mono',monospace;font-size:20px;padding:14px 16px;background:var(--surface);border:1px solid var(--line2);border-radius:10px}
+#gate button{padding:14px 26px;background:var(--gold);color:#0A0A0B;border:none;border-radius:999px;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+#gate button:hover{background:var(--gold-bright)}
+#gate .err{color:var(--red);font-size:12.5px;min-height:16px;font-family:'IBM Plex Mono',monospace}
+#gate .tiny{font-size:11px;color:var(--muted2)}
+#gate .tiny a{cursor:pointer;color:var(--muted)}
+
+/* ── Shell ────────────────────── */
+#app{display:none;max-width:1180px;margin:0 auto;padding:28px 24px 100px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-bottom:24px;border-bottom:1px solid var(--line);margin-bottom:36px;flex-wrap:wrap}
+.brand{font-family:'Fraunces',serif;font-size:24px;font-weight:400;letter-spacing:-.02em}
+.brand em{font-style:italic;color:var(--gold)}
+.brand span{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-left:12px;padding:4px 10px;border:1px solid var(--line2);border-radius:999px;vertical-align:middle}
+.top-actions{display:flex;gap:8px;flex-wrap:wrap}
+.mini{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:transparent;border:1px solid var(--line2);border-radius:999px;padding:9px 15px;cursor:pointer;transition:color .2s,border-color .2s}
+.mini:hover{color:var(--gold);border-color:var(--gold)}
+
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:block}
+
+/* ── Hero progress ────────────── */
+.headline{background:linear-gradient(180deg,var(--surface) 0%,var(--bg2) 100%);border:1px solid var(--line);border-radius:14px;padding:38px;margin-bottom:16px;position:relative;overflow:hidden}
+.headline::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,163,107,.5),transparent)}
+.headline h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(26px,3.4vw,40px);line-height:1.15;letter-spacing:-.03em;margin-bottom:8px}
+.headline h1 b{font-weight:400;color:var(--gold-bright)}
+.headline .subtarget{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:.04em}
+.headline .subtarget a{cursor:pointer}
+.progress{margin-top:26px}
+.progress-track{height:12px;background:var(--surface2);border-radius:999px;overflow:hidden;border:1px solid var(--line)}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--gold-bright));border-radius:999px;transition:width .9s var(--ease)}
+.progress-legend{display:flex;justify-content:space-between;margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted)}
+.progress-legend b{color:var(--text)}
+
+/* ── Stat grid ────────────────── */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px 20px;transition:border-color .3s}
+.stat:hover{border-color:var(--line2)}
+.stat.accent{background:linear-gradient(180deg,#17140E,var(--bg2));border-color:rgba(201,163,107,.35)}
+.stat .l{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.stat .v{font-family:'Fraunces',serif;font-size:34px;font-weight:300;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.stat.accent .v{color:var(--gold-bright)}
+.stat .v sup{font-size:16px;top:-14px;color:var(--muted);margin-right:1px}
+.stat .sub{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--muted2);margin-top:8px;letter-spacing:.03em}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:28px}
+.panel h2{font-family:'Fraunces',serif;font-weight:400;font-size:20px;letter-spacing:-.01em;margin-bottom:4px}
+.panel .ph{font-size:12.5px;color:var(--muted);margin-bottom:20px}
+
+/* runway */
+.runway-big{font-family:'Fraunces',serif;font-size:52px;font-weight:300;letter-spacing:-.03em;line-height:1;color:var(--gold-bright);font-variant-numeric:tabular-nums}
+.runway-big span{font-size:18px;color:var(--muted);font-style:italic}
+.runway-rows{margin-top:22px;display:flex;flex-direction:column;gap:0}
+.rr{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px dashed var(--line);font-size:13px}
+.rr:last-child{border-bottom:none}
+.rr .k{color:var(--muted)}
+.rr .val{font-family:'IBM Plex Mono',monospace;color:var(--text);font-variant-numeric:tabular-nums}
+
+/* projections */
+.proj{display:flex;flex-direction:column;gap:2px}
+.proj-row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px dashed var(--line);position:relative}
+.proj-row:last-child{border-bottom:none}
+.proj-row .care{font-size:13.5px;color:var(--text-dim)}
+.proj-row .mrr{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.proj-row.hit .care,.proj-row.hit .mrr{color:var(--gold-bright)}
+.proj-row .tick{color:var(--green);margin-right:8px;font-family:'Fraunces',serif;font-style:italic}
+.proj-note{font-size:11.5px;color:var(--muted2);margin-top:16px;line-height:1.6}
+
+/* milestones */
+.miles{display:flex;flex-direction:column}
+.mile{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}
+.mile:last-child{border-bottom:none}
+.mile .box{width:18px;height:18px;border-radius:5px;border:1px solid var(--line2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;color:#0A0A0B}
+.mile.done .box{background:var(--gold);border-color:var(--gold)}
+.mile .t{font-size:14px;color:var(--text-dim)}
+.mile.done .t{color:var(--text)}
+.mile .p{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted2)}
+.mile.done .p{color:var(--gold)}
+
+/* clients */
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:44px 0 18px;flex-wrap:wrap}
+.section-head h2{font-family:'Fraunces',serif;font-weight:400;font-size:26px;letter-spacing:-.02em}
+.btn-add{background:var(--gold);color:#0A0A0B;border:none;border-radius:999px;padding:11px 20px;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.btn-add:hover{background:var(--gold-bright)}
+
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{width:100%;border-collapse:collapse;min-width:760px}
+th{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:left;padding:16px 18px;border-bottom:1px solid var(--line);font-weight:500;white-space:nowrap}
+td{padding:15px 18px;border-bottom:1px solid var(--line);font-size:13.5px;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(201,163,107,.03)}
+.cname{font-family:'Fraunces',serif;font-size:16px;color:var(--text)}
+.pill{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;border:1px solid var(--line2);color:var(--muted);white-space:nowrap}
+.pill.won{color:var(--green);border-color:rgba(61,214,140,.4)}
+.pill.lost{color:var(--red);border-color:rgba(224,108,108,.4)}
+.pill.care{color:var(--gold);border-color:rgba(201,163,107,.4)}
+.pill.priority{color:var(--gold-bright);border-color:rgba(201,163,107,.6);background:rgba(201,163,107,.08)}
+.num{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums}
+.rowbtn{background:none;border:none;color:var(--muted);cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:11px;padding:4px 8px;border-radius:6px;transition:color .2s}
+.rowbtn:hover{color:var(--gold)}
+.rowbtn.del:hover{color:var(--red)}
+.empty{padding:48px 24px;text-align:center;color:var(--muted);font-size:14px}
+.empty em{font-style:italic;color:var(--text-dim)}
+
+/* modal form */
+#modal{position:fixed;inset:0;z-index:80;background:rgba(5,5,6,.72);backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto}
+#modal.open{display:flex}
+.form{background:var(--surface);border:1px solid var(--line2);border-radius:14px;padding:34px;width:100%;max-width:520px;margin:auto}
+.form h3{font-family:'Fraunces',serif;font-weight:400;font-size:24px;letter-spacing:-.01em;margin-bottom:24px}
+.form h3 em{font-style:italic;color:var(--gold)}
+.field{margin-bottom:16px}
+.field label{display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.field input,.field select,.field textarea{width:100%;background:var(--bg2);border:1px solid var(--line2);border-radius:9px;padding:12px 14px;font-size:14px;transition:border-color .2s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);outline:none}
+.field textarea{resize:vertical;min-height:64px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-actions{display:flex;gap:10px;margin-top:24px}
+.form-actions button{flex:1;padding:13px;border-radius:999px;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;border:1px solid var(--line2);background:transparent;color:var(--muted);transition:all .2s}
+.form-actions .save{background:var(--gold);color:#0A0A0B;border-color:var(--gold)}
+.form-actions .save:hover{background:var(--gold-bright)}
+.form-actions .cancel:hover{color:var(--text);border-color:var(--text)}
+
+.disclaimer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted2);line-height:1.7}
+
+@media (max-width:860px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .two-col{grid-template-columns:1fr}
+}
+@media (max-width:460px){
+  .frow{grid-template-columns:1fr}
+  .headline{padding:26px}
+}
+</style>
+</head>
+<body>
+
+<!-- ── PIN GATE ─────────────────── -->
+<div id="gate">
+  <div class="mark">Close<em>Craft</em></div>
+  <div class="line"></div>
+  <p id="gateMsg">Enter your PIN to open the dashboard.</p>
+  <div class="pinrow">
+    <input id="pin" type="password" inputmode="numeric" autocomplete="off" maxlength="12" placeholder="••••">
+    <button id="pinBtn">Unlock</button>
+  </div>
+  <div class="err" id="gateErr"></div>
+  <div class="tiny" id="gateReset"><a onclick="resetPin()">Forgotten PIN? Reset (clears all local data)</a></div>
+</div>
+
+<!-- ── APP ──────────────────────── -->
+<div id="app">
+  <div class="top">
+    <div class="brand">Close<em>Craft</em><span>Owner Dashboard</span></div>
+    <div class="top-actions">
+      <button class="mini" onclick="openSettings()">Target</button>
+      <button class="mini" onclick="exportData()">Export</button>
+      <button class="mini" onclick="importData()">Import</button>
+      <button class="mini" onclick="lock()">Lock</button>
+    </div>
+  </div>
+
+  <span class="eyebrow">Self-employment target</span>
+  <div class="headline">
+    <h1 id="headlineText">Add your first client to start tracking.</h1>
+    <div class="subtarget" id="targetLine"></div>
+    <div class="progress">
+      <div class="progress-track"><div class="progress-fill" id="pfill"></div></div>
+      <div class="progress-legend">
+        <span>Recurring income (MRR) toward target</span>
+        <span><b id="pctLabel">0%</b></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="stat accent"><div class="l">Recurring / month (MRR)</div><div class="v" id="s_mrr"><sup>$</sup>0</div><div class="sub" id="s_mrr_sub">the number that replaces income</div></div>
+    <div class="stat"><div class="l">Build revenue — this month</div><div class="v" id="s_build"><sup>$</sup>0</div><div class="sub">one-off cash / runway</div></div>
+    <div class="stat"><div class="l">Total income — this month</div><div class="v" id="s_total"><sup>$</sup>0</div><div class="sub">builds + recurring + tags</div></div>
+    <div class="stat"><div class="l">Active clients</div><div class="v" id="s_active">0</div><div class="sub" id="s_active_sub">0 on a recurring plan</div></div>
+    <div class="stat"><div class="l">Websites completed</div><div class="v" id="s_sites">0</div><div class="sub">delivered builds</div></div>
+    <div class="stat"><div class="l">NFC tags sold</div><div class="v" id="s_nfc">0</div><div class="sub" id="s_nfc_sub">$0 in tag revenue</div></div>
+    <div class="stat"><div class="l">Leads / prospects</div><div class="v" id="s_leads">0</div><div class="sub">in the pipeline</div></div>
+    <div class="stat"><div class="l">Conversion rate</div><div class="v" id="s_conv">—</div><div class="sub" id="s_conv_sub">won vs. lost</div></div>
+  </div>
+
+  <div class="two-col">
+    <div class="panel">
+      <h2>Runway created</h2>
+      <p class="ph">Cash from one-off builds & tags, in weeks of your target income.</p>
+      <div class="runway-big" id="runwayWeeks">0<span> weeks</span></div>
+      <div class="runway-rows">
+        <div class="rr"><span class="k">Total build revenue (all time)</span><span class="val" id="r_build">$0</span></div>
+        <div class="rr"><span class="k">Total tag revenue (all time)</span><span class="val" id="r_nfc">$0</span></div>
+        <div class="rr"><span class="k">One-off cash, all time</span><span class="val" id="r_oneoff">$0</span></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Recurring projections</h2>
+      <p class="ph">What monthly recurring looks like as Care clients add up.</p>
+      <div class="proj" id="projList"></div>
+      <div class="proj-note">Care = $50/mo · Priority = $100/mo. A Priority client counts as two Care clients toward these targets. Your live MRR is <b id="proj_now" style="color:var(--gold-bright)">$0</b>.</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Milestones</h2>
+    <p class="ph">The validation path — proof the model works before scale matters.</p>
+    <div class="miles" id="miles"></div>
+  </div>
+
+  <div class="section-head">
+    <h2>Clients &amp; leads</h2>
+    <button class="btn-add" onclick="openForm()">+ Add client / lead</button>
+  </div>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Business</th><th>Status</th><th>Build</th><th>Plan</th><th>Tags</th><th>Closed</th><th></th></tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+
+  <p class="disclaimer">
+    Private working tool. All data lives only in this browser (localStorage) on this device — nothing is uploaded or shared. Use <b>Export</b> regularly to back up and to move data between devices. The PIN is light protection against casual access, not real security.
+  </p>
+</div>
+
+<!-- ── MODAL ────────────────────── -->
+<div id="modal">
+  <div class="form">
+    <h3 id="formTitle">Add <em>client</em></h3>
+    <input type="hidden" id="f_id">
+    <div class="field">
+      <label>Business / client name</label>
+      <input id="f_name" type="text" placeholder="e.g. Joe's Café">
+    </div>
+    <div class="frow">
+      <div class="field">
+        <label>Lead status</label>
+        <select id="f_status">
+          <option value="prospect">Prospect</option>
+          <option value="contacted">Contacted</option>
+          <option value="quoted">Quoted</option>
+          <option value="won">Won (client)</option>
+          <option value="lost">Lost</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Recurring plan</label>
+        <select id="f_plan">
+          <option value="none">None</option>
+          <option value="care">Care — $50/mo</option>
+          <option value="priority">Priority — $100/mo</option>
+        </select>
+      </div>
+    </div>
+    <div class="frow">
+      <div class="field">
+        <label>Build price ($)</label>
+        <input id="f_build" type="number" min="0" step="1" placeholder="499">
+      </div>
+      <div class="field">
+        <label>NFC tags sold (qty)</label>
+        <input id="f_nfc" type="number" min="0" step="1" placeholder="0">
+      </div>
+    </div>
+    <div class="field">
+      <label>Date closed / won</label>
+      <input id="f_closed" type="date">
+    </div>
+    <div class="field">
+      <label>Notes</label>
+      <textarea id="f_notes" placeholder="Anything worth remembering…"></textarea>
+    </div>
+    <div class="form-actions">
+      <button class="cancel" onclick="closeForm()">Cancel</button>
+      <button class="save" onclick="saveClient()">Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Storage keys ──
+var K_PIN='cc_admin_pin', K_DATA='cc_admin_data';
+var CARE=50, PRIORITY=100, NFC_ONE=50, NFC_PAIR=80;
+
+// ── State ──
+var state = load();
+function load(){
+  try{ var raw=localStorage.getItem(K_DATA); if(raw) return JSON.parse(raw); }catch(e){}
+  return { weeklyTarget:1167, clients:[] };
+}
+function save(){ try{ localStorage.setItem(K_DATA, JSON.stringify(state)); }catch(e){ alert('Could not save — browser storage may be blocked.'); } }
+
+// ── PIN gate ──
+async function sha(s){ var b=new TextEncoder().encode(s); var h=await crypto.subtle.digest('SHA-256',b); return [...new Uint8Array(h)].map(x=>x.toString(16).padStart(2,'0')).join(''); }
+function pinExists(){ return !!localStorage.getItem(K_PIN); }
+function initGate(){
+  var msg=document.getElementById('gateMsg'), btn=document.getElementById('pinBtn');
+  if(!pinExists()){ msg.textContent='Set a PIN to protect this dashboard on this device.'; btn.textContent='Set PIN'; document.getElementById('gateReset').style.display='none'; }
+}
+async function tryPin(){
+  var v=document.getElementById('pin').value.trim(), err=document.getElementById('gateErr');
+  if(v.length<4){ err.textContent='Use at least 4 digits.'; return; }
+  if(!pinExists()){ localStorage.setItem(K_PIN, await sha(v)); unlock(); return; }
+  if(await sha(v) === localStorage.getItem(K_PIN)){ unlock(); }
+  else { err.textContent='Wrong PIN.'; document.getElementById('pin').value=''; }
+}
+function unlock(){ document.getElementById('gate').style.display='none'; document.getElementById('app').style.display='block'; render(); }
+function lock(){ document.getElementById('pin').value=''; document.getElementById('gateErr').textContent=''; document.getElementById('gate').style.display='flex'; document.getElementById('app').style.display='none'; }
+function resetPin(){ if(confirm('This clears your PIN AND all client data on this device. Export first if you want a backup. Continue?')){ localStorage.removeItem(K_PIN); localStorage.removeItem(K_DATA); state=load(); location.reload(); } }
+document.getElementById('pinBtn').onclick=tryPin;
+document.getElementById('pin').addEventListener('keydown',function(e){ if(e.key==='Enter') tryPin(); });
+
+// ── Helpers ──
+function money(n){ return '$'+Math.round(n).toLocaleString('en-AU'); }
+function monthlyTarget(){ return state.weeklyTarget*52/12; }
+function ym(d){ return d? d.slice(0,7) : ''; }
+function thisYM(){ var d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0'); }
+function nfcRevenue(q){ q=parseInt(q)||0; var pairs=Math.floor(q/2), rem=q%2; return pairs*NFC_PAIR + rem*NFC_ONE; }
+function planMRR(p){ return p==='care'?CARE : p==='priority'?PRIORITY : 0; }
+
+// ── Metrics ──
+function metrics(){
+  var m={ mrr:0, buildMonth:0, nfcMonth:0, buildAll:0, nfcAll:0, active:0, recurring:0, sites:0, nfcQty:0, leads:0, won:0, lost:0, careUnits:0 };
+  var cur=thisYM();
+  state.clients.forEach(function(c){
+    var won = c.status==='won';
+    if(won){
+      m.active++;
+      m.mrr += planMRR(c.plan);
+      if(c.plan!=='none') m.recurring++;
+      if(c.plan==='care') m.careUnits+=1; if(c.plan==='priority') m.careUnits+=2;
+      var b=parseFloat(c.build)||0, nq=parseInt(c.nfc)||0, nrev=nfcRevenue(nq);
+      if(b>0){ m.sites++; m.buildAll+=b; if(ym(c.closed)===cur) m.buildMonth+=b; }
+      m.nfcQty+=nq; m.nfcAll+=nrev; if(ym(c.closed)===cur) m.nfcMonth+=nrev;
+    } else if(c.status==='lost'){ m.lost++; }
+    else { m.leads++; }
+  });
+  m.totalMonth = m.buildMonth + m.nfcMonth + m.mrr;
+  m.oneOff = m.buildAll + m.nfcAll;
+  m.runwayWeeks = state.weeklyTarget>0 ? m.oneOff/state.weeklyTarget : 0;
+  m.pct = monthlyTarget()>0 ? Math.min(100, m.mrr/monthlyTarget()*100) : 0;
+  m.pctRaw = monthlyTarget()>0 ? m.mrr/monthlyTarget()*100 : 0;
+  m.conv = (m.active+m.lost)>0 ? m.active/(m.active+m.lost)*100 : null;
+  return m;
+}
+
+// ── Render ──
+function render(){
+  var m=metrics();
+  document.getElementById('targetLine').innerHTML='Target: <b style="color:var(--text)">'+money(state.weeklyTarget)+'/week</b> · '+money(monthlyTarget())+'/month equivalent &nbsp;·&nbsp; <a onclick="openSettings()">edit</a>';
+  // headline
+  var h;
+  if(state.clients.length===0){ h='Add your first client to start tracking.'; }
+  else if(m.mrr===0){ h='<b>'+money(m.oneOff)+'</b> in cash so far. First recurring client is the next milestone.'; }
+  else { h='CloseCraft recurring covers <b>'+Math.round(m.pctRaw)+'%</b> of your weekly income target.'; }
+  document.getElementById('headlineText').innerHTML=h;
+  document.getElementById('pfill').style.width=m.pct+'%';
+  document.getElementById('pctLabel').textContent=Math.round(m.pctRaw)+'%';
+
+  setV('s_mrr','<sup>$</sup>'+Math.round(m.mrr).toLocaleString('en-AU'));
+  document.getElementById('s_mrr_sub').textContent = m.recurring+' recurring client'+(m.recurring===1?'':'s');
+  setV('s_build','<sup>$</sup>'+Math.round(m.buildMonth).toLocaleString('en-AU'));
+  setV('s_total','<sup>$</sup>'+Math.round(m.totalMonth).toLocaleString('en-AU'));
+  setV('s_active', m.active);
+  document.getElementById('s_active_sub').textContent = m.recurring+' on a recurring plan';
+  setV('s_sites', m.sites);
+  setV('s_nfc', m.nfcQty);
+  document.getElementById('s_nfc_sub').textContent = money(m.nfcAll)+' in tag revenue';
+  setV('s_leads', m.leads);
+  setV('s_conv', m.conv===null?'—':Math.round(m.conv)+'%');
+  document.getElementById('s_conv_sub').textContent = m.active+' won · '+m.lost+' lost';
+
+  // runway
+  document.getElementById('runwayWeeks').innerHTML = (Math.round(m.runwayWeeks*10)/10)+'<span> weeks</span>';
+  document.getElementById('r_build').textContent=money(m.buildAll);
+  document.getElementById('r_nfc').textContent=money(m.nfcAll);
+  document.getElementById('r_oneoff').textContent=money(m.oneOff);
+
+  // projections
+  var tiers=[10,25,50,100];
+  document.getElementById('projList').innerHTML = tiers.map(function(n){
+    var hit=m.careUnits>=n;
+    return '<div class="proj-row'+(hit?' hit':'')+'"><span class="care">'+(hit?'<span class="tick">✓</span>':'')+n+' Care clients</span><span class="mrr">'+money(n*CARE)+'/mo</span></div>';
+  }).join('');
+  document.getElementById('proj_now').textContent=money(m.mrr);
+
+  // milestones
+  var M=[
+    ['First paying client', m.active>=1],
+    ['5 paying clients', m.active>=5],
+    ['$500 MRR', m.mrr>=500],
+    ['10 websites completed', m.sites>=10],
+    ['$1,000 MRR', m.mrr>=1000],
+    ['$2,500 MRR', m.mrr>=2500],
+    ['$5,000 MRR', m.mrr>=5000],
+    ['Recurring income matches target', m.mrr>=monthlyTarget()]
+  ];
+  document.getElementById('miles').innerHTML = M.map(function(x){
+    return '<div class="mile'+(x[1]?' done':'')+'"><span class="box">'+(x[1]?'✓':'')+'</span><span class="t">'+x[0]+'</span><span class="p">'+(x[1]?'Done':'—')+'</span></div>';
+  }).join('');
+
+  renderRows();
+}
+function setV(id,html){ document.getElementById(id).innerHTML=html; }
+
+function renderRows(){
+  var tb=document.getElementById('rows');
+  if(state.clients.length===0){ tb.innerHTML='<tr><td colspan="7"><div class="empty">No clients yet. <em>Add your first walk-in.</em></div></td></tr>'; return; }
+  var order={won:0,quoted:1,contacted:2,prospect:3,lost:4};
+  var list=state.clients.slice().sort(function(a,b){ return (order[a.status]-order[b.status]) || ((b.closed||'').localeCompare(a.closed||'')); });
+  tb.innerHTML=list.map(function(c){
+    var planPill = c.plan==='none'?'<span class="pill">—</span>' : '<span class="pill '+c.plan+'">'+(c.plan==='care'?'Care':'Priority')+'</span>';
+    var statusPill='<span class="pill '+(c.status==='won'?'won':c.status==='lost'?'lost':'')+'">'+c.status+'</span>';
+    return '<tr>'+
+      '<td><div class="cname">'+esc(c.name||'—')+'</div></td>'+
+      '<td>'+statusPill+'</td>'+
+      '<td class="num">'+(c.build>0?money(c.build):'—')+'</td>'+
+      '<td>'+planPill+'</td>'+
+      '<td class="num">'+(parseInt(c.nfc)>0?c.nfc:'—')+'</td>'+
+      '<td class="num" style="color:var(--muted)">'+(c.closed||'—')+'</td>'+
+      '<td style="white-space:nowrap;text-align:right"><button class="rowbtn" onclick="openForm(\''+c.id+'\')">Edit</button><button class="rowbtn del" onclick="delClient(\''+c.id+'\')">Delete</button></td>'+
+      '</tr>';
+  }).join('');
+}
+function esc(s){ return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+
+// ── Form ──
+function openForm(id){
+  var f=document.getElementById('modal'); f.classList.add('open');
+  if(id){
+    var c=state.clients.find(function(x){return x.id===id;});
+    document.getElementById('formTitle').innerHTML='Edit <em>client</em>';
+    document.getElementById('f_id').value=c.id;
+    document.getElementById('f_name').value=c.name||'';
+    document.getElementById('f_status').value=c.status||'prospect';
+    document.getElementById('f_plan').value=c.plan||'none';
+    document.getElementById('f_build').value=c.build||'';
+    document.getElementById('f_nfc').value=c.nfc||'';
+    document.getElementById('f_closed').value=c.closed||'';
+    document.getElementById('f_notes').value=c.notes||'';
+  } else {
+    document.getElementById('formTitle').innerHTML='Add <em>client</em>';
+    ['f_id','f_name','f_build','f_nfc','f_closed','f_notes'].forEach(function(i){document.getElementById(i).value='';});
+    document.getElementById('f_status').value='prospect';
+    document.getElementById('f_plan').value='none';
+    document.getElementById('f_closed').value=new Date().toISOString().slice(0,10);
+  }
+  document.getElementById('f_name').focus();
+}
+function closeForm(){ document.getElementById('modal').classList.remove('open'); }
+function saveClient(){
+  var name=document.getElementById('f_name').value.trim();
+  if(!name){ document.getElementById('f_name').focus(); return; }
+  var id=document.getElementById('f_id').value;
+  var obj={
+    id: id || (Date.now()+''+Math.floor(Math.random()*999)),
+    name:name,
+    status:document.getElementById('f_status').value,
+    plan:document.getElementById('f_plan').value,
+    build:parseFloat(document.getElementById('f_build').value)||0,
+    nfc:parseInt(document.getElementById('f_nfc').value)||0,
+    closed:document.getElementById('f_closed').value||'',
+    notes:document.getElementById('f_notes').value.trim()
+  };
+  if(id){ var i=state.clients.findIndex(function(x){return x.id===id;}); state.clients[i]=obj; }
+  else { state.clients.push(obj); }
+  save(); closeForm(); render();
+}
+function delClient(id){
+  var c=state.clients.find(function(x){return x.id===id;});
+  if(confirm('Delete '+(c?c.name:'this client')+'?')){ state.clients=state.clients.filter(function(x){return x.id!==id;}); save(); render(); }
+}
+document.getElementById('modal').addEventListener('click',function(e){ if(e.target===this) closeForm(); });
+
+// ── Settings ──
+function openSettings(){
+  var v=prompt('Your weekly income target ($ per week):', state.weeklyTarget);
+  if(v===null) return;
+  var n=parseFloat(v); if(!isNaN(n)&&n>0){ state.weeklyTarget=n; save(); render(); }
+}
+
+// ── Export / Import ──
+function exportData(){
+  var blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});
+  var url=URL.createObjectURL(blob), a=document.createElement('a');
+  a.href=url; a.download='closecraft-dashboard-'+new Date().toISOString().slice(0,10)+'.json';
+  document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+}
+function importData(){
+  var inp=document.createElement('input'); inp.type='file'; inp.accept='application/json,.json';
+  inp.onchange=function(){
+    var file=inp.files[0]; if(!file) return;
+    var r=new FileReader();
+    r.onload=function(){
+      try{
+        var d=JSON.parse(r.result);
+        if(!d.clients||!Array.isArray(d.clients)) throw new Error('bad');
+        if(!confirm('Replace all current data with the imported file? ('+d.clients.length+' clients)')) return;
+        state={ weeklyTarget:d.weeklyTarget||1167, clients:d.clients };
+        save(); render();
+      }catch(e){ alert('Could not read that file.'); }
+    };
+    r.readAsText(file);
+  };
+  inp.click();
+}
+
+// ── Boot ──
+initGate();
+document.getElementById('pin').focus();
+</script>
+</body>
+</html>
