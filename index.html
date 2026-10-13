@@ -1207,6 +1207,17 @@ body.loaded .hero-card{opacity:1;transform:none}
   .quiz-q{max-width:none}
   .quiz-opt{font-size:15px;padding:16px 18px}
 }
+
+/* ══ Apple-design audit pass ══════════════════════════════
+   Readability + label consistency. Content/CSS only — no layout rework. */
+/* 1 · Lift reading copy toward a legible floor (iOS body default ≈17pt) */
+.price-desc,.work-desc2,.flow-p{font-size:15px}
+.price-feat{font-size:14.5px}
+/* 2 · Finish the sentence-casing pass on the last all-caps micro-labels */
+.fstat-l,.founder-role,.nfc-price .q{text-transform:none;letter-spacing:.01em}
+/* 2b · De-number the founder principles — a set of values, not a sequence */
+.principle{grid-template-columns:1fr}
+.principle-n{display:none}
 </style>
 
 <!-- ── Structured data (Schema.org / JSON-LD) ─────────────────── -->
@@ -2085,14 +2096,21 @@ body.loaded .hero-card{opacity:1;transform:none}
 <script>
 var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// ── Intro curtain ────────────────────
+// ── Intro curtain (first visit only this session) ────
 function reveal(){document.body.classList.add('loaded')}
-if(reduced){reveal()}
-else{
+var seenIntro=false;
+try{seenIntro=sessionStorage.getItem('cc_intro')==='1'}catch(e){}
+if(reduced||seenIntro){
+  // Skip the curtain: hide it and show content immediately
+  var introEl=document.getElementById('intro');
+  if(introEl){introEl.style.transition='none';introEl.style.display='none'}
+  reveal();
+}else{
   var done=false;
   window.addEventListener('load',function(){if(!done){done=true;setTimeout(reveal,500)}});
   setTimeout(function(){if(!done){done=true;reveal()}},1800);
 }
+try{sessionStorage.setItem('cc_intro','1')}catch(e){}
 
 // ── Nav scroll state ─────────────────
 var nav=document.getElementById('nav');
